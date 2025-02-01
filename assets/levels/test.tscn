@@ -1,10 +1,44 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0kfco0i4bdqj"]
+[gd_scene load_steps=4 format=3 uid="uid://b0kfco0i4bdqj"]
 
 [ext_resource type="PackedScene" uid="uid://dsd1ehisxgcag" path="res://assets/player/player.tscn" id="1_7hac1"]
+[ext_resource type="PackedScene" uid="uid://dx11w820lxb32" path="res://assets/hazards/missile/missile.tscn" id="2_pouml"]
+
+[sub_resource type="GDScript" id="GDScript_jhxtg"]
+script/source = "extends Node2D
+
+var missile_scene := load(\"res://assets/hazards/missile/missile.tscn\")
+var missile_spawn_timer := Timer.new()
+var screen_size: Vector2
+
+func _ready() -> void:
+	screen_size = get_viewport_rect().size
+	
+	missile_spawn_timer.wait_time = 2
+	missile_spawn_timer.autostart = true
+	missile_spawn_timer.timeout.connect(_on_missile_spawn_timer_timeout)
+	add_child(missile_spawn_timer)
+
+func _process(delta: float) -> void:
+	$Player.position.y = screen_size.y / 2
+	
+func _on_missile_spawn_timer_timeout() -> void:
+	var missile = missile_scene.instantiate()
+	
+	missile.homing = false
+	missile.position.y = randf_range(10, screen_size.y - 10)
+	missile.speed = randf_range(500, 1000)
+	
+	add_child(missile)
+"
 
 [node name="Test" type="Node2D"]
+script = SubResource("GDScript_jhxtg")
 
-[node name="Player" parent="." instance=ExtResource("1_7hac1")]
+[node name="Player" parent="." groups=["player"] instance=ExtResource("1_7hac1")]
 position = Vector2(108, 194)
 player_gravity = 400
 max_velocity = 300
+
+[node name="Missile" parent="." instance=ExtResource("2_pouml")]
+position = Vector2(302, 191)
+homing = true
