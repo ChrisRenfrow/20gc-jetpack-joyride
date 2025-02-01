@@ -63,7 +63,7 @@ region_rect = Rect2(0, 0, 256, 32)
 [node name="TrodeA" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_u5ur4")
 autoplay = "default"
-frame_progress = 0.524515
+frame_progress = 0.86139
 
 [node name="TrodeB" type="AnimatedSprite2D" parent="."]
 position = Vector2(256, 0)
