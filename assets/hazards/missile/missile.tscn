@@ -111,6 +111,7 @@ radius = 13.0
 
 [node name="Missile" type="StaticBody2D" groups=["hazard"]]
 collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_64slj")
 
 [node name="TrailParticles" type="GPUParticles2D" parent="."]
