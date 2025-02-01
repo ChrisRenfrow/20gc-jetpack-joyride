@@ -80,7 +80,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"firing",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -182,9 +182,11 @@ autoplay = "run"
 sprite_frames = SubResource("SpriteFrames_xlq55")
 animation = &"idle"
 autoplay = "idle"
+frame_progress = 0.657066
 speed_scale = 3.0
 
 [node name="BulletParticles" type="GPUParticles2D" parent="JetpackSprite"]
+unique_name_in_owner = true
 z_index = -1
 position = Vector2(-9, 13)
 amount = 30
@@ -192,6 +194,7 @@ process_material = SubResource("ParticleProcessMaterial_mivt7")
 texture = SubResource("AtlasTexture_c3cfg")
 
 [node name="ExhaustParticles" type="GPUParticles2D" parent="JetpackSprite"]
+unique_name_in_owner = true
 position = Vector2(-9, 13)
 amount = 30
 process_material = SubResource("ParticleProcessMaterial_kkhb7")
@@ -199,6 +202,7 @@ texture = SubResource("AtlasTexture_84ysy")
 fixed_fps = 10
 
 [node name="CasingParticles" type="GPUParticles2D" parent="JetpackSprite"]
+unique_name_in_owner = true
 z_index = -1
 position = Vector2(-12, 0)
 amount = 30
@@ -207,13 +211,15 @@ texture = SubResource("AtlasTexture_oi7mj")
 lifetime = 3.0
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 2)
+position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_uopu0")
 
-[node name="Hitzone" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
 
-[node name="HitzoneShape" type="CollisionShape2D" parent="Hitzone"]
+[node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_nhlov")
 
-[connection signal="body_entered" from="Hitzone" to="." method="_on_hitzone_body_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitzone_body_entered"]
