@@ -1,0 +1,146 @@
+[gd_scene load_steps=20 format=3 uid="uid://dx11w820lxb32"]
+
+[ext_resource type="Script" path="res://assets/hazards/missile/missile.gd" id="1_64slj"]
+[ext_resource type="Texture2D" uid="uid://by1s2jgi7viie" path="res://assets/hazards/missile/missile-sheet.png" id="1_rnhwk"]
+
+[sub_resource type="Curve" id="Curve_83rub"]
+_data = [Vector2(0, 0.703297), 0.0, 0.0, 0, 0, Vector2(1, 0.021978), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_fkm45"]
+curve = SubResource("Curve_83rub")
+
+[sub_resource type="Gradient" id="Gradient_50t7y"]
+colors = PackedColorArray(1, 0.679167, 0.45, 0.701961, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ulcbt"]
+gradient = SubResource("Gradient_50t7y")
+
+[sub_resource type="Curve" id="Curve_4rum4"]
+_data = [Vector2(0, 0.384615), 0.0, 0.0, 0, 0, Vector2(0.426829, 0.813187), 0.0, 0.0, 0, 0, Vector2(1, 0.483516), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_a3r17"]
+curve = SubResource("Curve_4rum4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7qfkg"]
+particle_flag_disable_z = true
+angle_min = -90.0
+angle_max = 90.0
+inherit_velocity_ratio = 0.8
+spread = 10.0
+initial_velocity_max = 50.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+gravity = Vector3(0, -20, 0)
+damping_min = 5.0
+damping_max = 10.0
+scale_curve = SubResource("CurveTexture_a3r17")
+color_ramp = SubResource("GradientTexture1D_ulcbt")
+alpha_curve = SubResource("CurveTexture_fkm45")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gusc"]
+atlas = ExtResource("1_rnhwk")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75fiy"]
+atlas = ExtResource("1_rnhwk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3wvp"]
+atlas = ExtResource("1_rnhwk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1qokv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75fiy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3wvp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0xet"]
+atlas = ExtResource("1_rnhwk")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8m2a"]
+atlas = ExtResource("1_rnhwk")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g883"]
+atlas = ExtResource("1_rnhwk")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8cg5"]
+atlas = ExtResource("1_rnhwk")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kx70l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0xet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8m2a")
+}],
+"loop": true,
+"name": &"alert",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8g883")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8cg5")
+}],
+"loop": true,
+"name": &"critical alert",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0yox6"]
+radius = 13.0
+
+[node name="Missile" type="StaticBody2D" groups=["hazard"]]
+collision_layer = 4
+script = ExtResource("1_64slj")
+
+[node name="TrailParticles" type="GPUParticles2D" parent="."]
+position = Vector2(16, 0)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_7qfkg")
+texture = SubResource("AtlasTexture_7gusc")
+preprocess = 1.0
+
+[node name="MissileSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1qokv")
+autoplay = "default"
+
+[node name="AlertSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kx70l")
+animation = &"alert"
+autoplay = "alert"
+
+[node name="MissileShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0yox6")
+
+[node name="AlertDuration" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="AlertDelay" type="Timer" parent="."]
+wait_time = 0.001
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="AlertDuration" to="." method="_on_alert_duration_timeout"]
+[connection signal="timeout" from="AlertDelay" to="." method="_on_alert_delay_timeout"]

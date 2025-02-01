@@ -27,6 +27,11 @@ window/stretch/scale_mode="integer"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[global_group]
+
+player=""
+hazard=""
+
 [input]
 
 jump={
@@ -39,6 +44,7 @@ jump={
 
 2d_physics/layer_1="Boundary"
 2d_physics/layer_2="Player"
+2d_physics/layer_3="Hazard"
 
 [rendering]
 
