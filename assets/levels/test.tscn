@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0kfco0i4bdqj"]
+
+[ext_resource type="PackedScene" uid="uid://dsd1ehisxgcag" path="res://assets/player/player.tscn" id="1_7hac1"]
+
+[node name="Test" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_7hac1")]
+position = Vector2(108, 194)
+player_gravity = 400
+max_velocity = 300
