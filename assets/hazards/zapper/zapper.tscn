@@ -47,10 +47,12 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tckql"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iekkw"]
 size = Vector2(256, 20)
 
-[node name="Zapper" type="StaticBody2D"]
+[node name="Zapper" type="StaticBody2D" groups=["hazard"]]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_p55rc")
 
 [node name="Arc" type="Sprite2D" parent="."]
@@ -74,4 +76,4 @@ frame_progress = 0.0744122
 
 [node name="BeamShape" type="CollisionShape2D" parent="."]
 position = Vector2(128, 0)
-shape = SubResource("RectangleShape2D_tckql")
+shape = SubResource("RectangleShape2D_iekkw")
