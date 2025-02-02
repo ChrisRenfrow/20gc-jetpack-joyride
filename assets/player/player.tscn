@@ -108,6 +108,7 @@ angular_velocity_max = -1.60933e-05
 gravity = Vector3(0, 98, 0)
 hue_variation_min = -2.23517e-08
 hue_variation_max = 0.3
+collision_mode = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c3cfg"]
 atlas = ExtResource("3_ab6ya")
@@ -150,14 +151,15 @@ angle_min = -90.0
 angle_max = -90.0
 direction = Vector3(-1, 0, 0)
 spread = 10.0
-initial_velocity_min = 50.0
-initial_velocity_max = 80.0
+initial_velocity_min = 80.0
+initial_velocity_max = 200.0
 angular_velocity_min = 9.99998
 angular_velocity_max = 50.0
-gravity = Vector3(-30, 200, 0)
+gravity = Vector3(-30, 900, 0)
 scale_min = 0.8
 scale_max = 0.8
 color = Color(0.462745, 0.392157, 0.345098, 0.8)
+collision_mode = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oi7mj"]
 atlas = ExtResource("3_ab6ya")
@@ -169,7 +171,7 @@ size = Vector2(21, 27)
 [sub_resource type="CircleShape2D" id="CircleShape2D_nhlov"]
 radius = 12.0416
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_2m8u1")
 
@@ -211,7 +213,7 @@ emitting = false
 amount = 30
 process_material = SubResource("ParticleProcessMaterial_5ovmu")
 texture = SubResource("AtlasTexture_oi7mj")
-lifetime = 3.0
+lifetime = 2.0
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
