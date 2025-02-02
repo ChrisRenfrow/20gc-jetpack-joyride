@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://beeppdj2v0y6d"]
+
+[ext_resource type="Script" path="res://assets/segments/simple/basic_zappers/basic_zappers.gd" id="1_vwbn7"]
+[ext_resource type="PackedScene" uid="uid://b5mri4bhjc6fp" path="res://assets/hazards/zapper/zapper.tscn" id="2_wjv6f"]
+
+[node name="BasicZappers" type="Node2D"]
+script = ExtResource("1_vwbn7")
+
+[node name="Zapper" parent="." instance=ExtResource("2_wjv6f")]
+position = Vector2(32, 32)
+rotation = 0.785398
+arc_length = 150.0
+angle_degrees = 45.0
+
+[node name="Zapper3" parent="." instance=ExtResource("2_wjv6f")]
+position = Vector2(489, 326)
+rotation = -0.785398
+arc_length = 150.0
+angle_degrees = -45.0

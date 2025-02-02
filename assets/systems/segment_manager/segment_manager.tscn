@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw3m0bwi70wnu"]
+
+[ext_resource type="Script" path="res://assets/systems/segment_manager/segment_manager.gd" id="1_ix14f"]
+
+[node name="SegmentManager" type="Node2D"]
+script = ExtResource("1_ix14f")

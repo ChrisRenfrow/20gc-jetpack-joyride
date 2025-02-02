@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://dmcxcv1lrfyyc"]
+
+[ext_resource type="Script" path="res://assets/stages/basic_stage.gd" id="1_20upy"]
+[ext_resource type="Texture2D" uid="uid://dxkk8m0x41mga" path="res://assets/stages/basic-stage-sheet.png" id="1_thnxr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cha6s"]
+atlas = ExtResource("1_thnxr")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26vk8"]
+atlas = ExtResource("1_thnxr")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tb8pi"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bg4m7"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0i1rv"]
+polygon = PackedVector2Array(-2, -20, 1283, -20, 1282, 15, -2, 18)
+
+[node name="BasicStage" type="Node2D"]
+script = ExtResource("1_20upy")
+
+[node name="BG" type="ParallaxBackground" parent="."]
+
+[node name="BackdropBG" type="ParallaxLayer" parent="BG"]
+motion_mirroring = Vector2(640, 0)
+
+[node name="BlackColor" type="ColorRect" parent="BG/BackdropBG"]
+offset_right = 639.0
+offset_bottom = 361.0
+color = Color(0, 0, 0, 1)
+
+[node name="Backdrop" type="ParallaxLayer" parent="BG"]
+motion_scale = Vector2(0.8, 0.8)
+motion_mirroring = Vector2(640, 0)
+
+[node name="BackdropTexture" type="TextureRect" parent="BG/Backdrop"]
+offset_right = 640.0
+offset_bottom = 360.0
+texture = SubResource("AtlasTexture_cha6s")
+
+[node name="Wall" type="ParallaxLayer" parent="BG"]
+motion_mirroring = Vector2(640, 0)
+
+[node name="WallTexture" type="TextureRect" parent="BG/Wall"]
+offset_right = 640.0
+offset_bottom = 360.0
+texture = SubResource("AtlasTexture_26vk8")
+
+[node name="Ceiling" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CeilingBoundary" type="CollisionShape2D" parent="Ceiling"]
+position = Vector2(320, 31)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_tb8pi")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="FloorBoundary" type="CollisionShape2D" parent="Floor"]
+position = Vector2(320, 327)
+shape = SubResource("WorldBoundaryShape2D_bg4m7")
+
+[node name="ParticleOccluder" type="LightOccluder2D" parent="."]
+position = Vector2(-1, 347)
+occluder = SubResource("OccluderPolygon2D_0i1rv")
