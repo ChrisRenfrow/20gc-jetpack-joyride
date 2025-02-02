@@ -1,0 +1,145 @@
+[gd_scene load_steps=20 format=3 uid="uid://dlt41xtu7ue3w"]
+
+[ext_resource type="Script" path="res://assets/hazards/laser/laser.gd" id="1_bgb33"]
+[ext_resource type="Texture2D" uid="uid://ccmra412tabw5" path="res://assets/hazards/laser/laser-sheet.png" id="1_mw51r"]
+[ext_resource type="Texture2D" uid="uid://coyaai1n6gvfa" path="res://assets/hazards/laser/beam-1.png" id="2_em25o"]
+[ext_resource type="Texture2D" uid="uid://st0nsim62xay" path="res://assets/hazards/laser/beam-2.png" id="3_eql3a"]
+[ext_resource type="Texture2D" uid="uid://c0q0a8vuqlmm3" path="res://assets/hazards/laser/beam-3.png" id="4_d0fx6"]
+[ext_resource type="Texture2D" uid="uid://dmn8ptwfvpfb4" path="res://assets/hazards/laser/beam-4.png" id="5_gtux6"]
+[ext_resource type="Texture2D" uid="uid://rnnhv57tytyy" path="res://assets/hazards/laser/charging-1.png" id="6_adg2n"]
+[ext_resource type="Texture2D" uid="uid://coibcnk7kc8uv" path="res://assets/hazards/laser/charging-2.png" id="7_5wegi"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_gryp0"]
+frames = 4
+speed_scale = 10.0
+frame_0/texture = ExtResource("2_em25o")
+frame_1/texture = ExtResource("3_eql3a")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("4_d0fx6")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("5_gtux6")
+frame_3/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_tvosa"]
+frames = 2
+speed_scale = 5.0
+frame_0/texture = ExtResource("6_adg2n")
+frame_1/texture = ExtResource("7_5wegi")
+frame_1/duration = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7056n"]
+atlas = ExtResource("1_mw51r")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6dt2f"]
+atlas = ExtResource("1_mw51r")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awahl"]
+atlas = ExtResource("1_mw51r")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1v4gk"]
+atlas = ExtResource("1_mw51r")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ked0s"]
+atlas = ExtResource("1_mw51r")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttqrw"]
+atlas = ExtResource("1_mw51r")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_los1r"]
+atlas = ExtResource("1_mw51r")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_skvie"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7056n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6dt2f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awahl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1v4gk")
+}],
+"loop": true,
+"name": &"charging",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ked0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttqrw")
+}],
+"loop": true,
+"name": &"firing",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_los1r")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4fsh4"]
+size = Vector2(200, 20)
+
+[node name="Laser" type="StaticBody2D" groups=["hazard"]]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_bgb33")
+
+[node name="Beam" type="Node2D" parent="."]
+position = Vector2(100, 0)
+
+[node name="BeamSprite" type="Sprite2D" parent="Beam"]
+texture_repeat = 2
+texture = SubResource("AnimatedTexture_gryp0")
+region_enabled = true
+region_rect = Rect2(0, 0, 200, 32)
+
+[node name="BeamChargingSprite" type="Sprite2D" parent="Beam"]
+texture_repeat = 2
+texture = SubResource("AnimatedTexture_tvosa")
+region_enabled = true
+region_rect = Rect2(0, 0, 200, 32)
+
+[node name="DiodeA" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_skvie")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="DiodeB" type="AnimatedSprite2D" parent="."]
+position = Vector2(200, 0)
+rotation = -3.14159
+sprite_frames = SubResource("SpriteFrames_skvie")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="LaserShape" type="CollisionShape2D" parent="."]
+position = Vector2(100, 0)
+shape = SubResource("RectangleShape2D_4fsh4")
+
+[node name="ChargeTime" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="FireTime" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="ChargeTime" to="." method="_on_charge_time_timeout"]
+[connection signal="timeout" from="FireTime" to="." method="_on_fire_time_timeout"]
