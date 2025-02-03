@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmn8ptwfvpfb4"
-path="res://.godot/imported/beam-4.png-79741ed81fffe2217b470616dadd0c8b.ctex"
+path="res://.godot/imported/beam-4.png-f1a72d328abdb01da211f4f80ab55e7f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hazards/laser/beam-4.png"
-dest_files=["res://.godot/imported/beam-4.png-79741ed81fffe2217b470616dadd0c8b.ctex"]
+source_file="res://assets/hazards/laser/sprites/beam-4.png"
+dest_files=["res://.godot/imported/beam-4.png-f1a72d328abdb01da211f4f80ab55e7f.ctex"]
 
 [params]
 

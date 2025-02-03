@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by1s2jgi7viie"
-path="res://.godot/imported/missile-sheet.png-8e3f88b5cc4fbd9a950cdb7b5d4be3c6.ctex"
+uid="uid://rnnhv57tytyy"
+path="res://.godot/imported/charging-1.png-f5caf24bb0db0c80bfb344c6a8a20434.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hazards/missile/missile-sheet.png"
-dest_files=["res://.godot/imported/missile-sheet.png-8e3f88b5cc4fbd9a950cdb7b5d4be3c6.ctex"]
+source_file="res://assets/hazards/laser/sprites/charging-1.png"
+dest_files=["res://.godot/imported/charging-1.png-f5caf24bb0db0c80bfb344c6a8a20434.ctex"]
 
 [params]
 

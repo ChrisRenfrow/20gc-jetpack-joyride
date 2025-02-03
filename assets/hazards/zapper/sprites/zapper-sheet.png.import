@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deepdaw3dani2"
-path="res://.godot/imported/zapper-beam2.png-4b4d98b0506ccc2b674ec62ea32ccefe.ctex"
+uid="uid://ckp871vbdioh6"
+path="res://.godot/imported/zapper-sheet.png-43ee5b94cf690067afca96d3989a27e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hazards/zapper/zapper-beam2.png"
-dest_files=["res://.godot/imported/zapper-beam2.png-4b4d98b0506ccc2b674ec62ea32ccefe.ctex"]
+source_file="res://assets/hazards/zapper/sprites/zapper-sheet.png"
+dest_files=["res://.godot/imported/zapper-sheet.png-43ee5b94cf690067afca96d3989a27e8.ctex"]
 
 [params]
 

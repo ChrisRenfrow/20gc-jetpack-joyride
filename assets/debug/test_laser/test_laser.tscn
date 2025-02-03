@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dc85kqajgo3st"]
+
+[ext_resource type="PackedScene" uid="uid://dsd1ehisxgcag" path="res://assets/player/player.tscn" id="1_whcfk"]
+[ext_resource type="PackedScene" uid="uid://dmcxcv1lrfyyc" path="res://assets/stages/basic_stage.tscn" id="2_0f5no"]
+[ext_resource type="PackedScene" uid="uid://cvfwhjkl0kg6i" path="res://assets/segments/simple/basic_lasers/basic_lasers.tscn" id="3_4f0cl"]
+
+[node name="TestLaser" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_whcfk")]
+position = Vector2(140, 169)
+
+[node name="BasicStage" parent="." instance=ExtResource("2_0f5no")]
+
+[node name="BasicLasers" parent="." instance=ExtResource("3_4f0cl")]

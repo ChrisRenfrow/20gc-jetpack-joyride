@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rnnhv57tytyy"
-path="res://.godot/imported/charging-1.png-593d90e2e94f34089ad53b017b8717a9.ctex"
+uid="uid://ccmra412tabw5"
+path="res://.godot/imported/laser-sheet.png-efaf78f4078bf9003858aca1863d673a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hazards/laser/charging-1.png"
-dest_files=["res://.godot/imported/charging-1.png-593d90e2e94f34089ad53b017b8717a9.ctex"]
+source_file="res://assets/hazards/laser/sprites/laser-sheet.png"
+dest_files=["res://.godot/imported/laser-sheet.png-efaf78f4078bf9003858aca1863d673a.ctex"]
 
 [params]
 

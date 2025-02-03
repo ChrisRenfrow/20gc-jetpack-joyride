@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0q0a8vuqlmm3"
-path="res://.godot/imported/beam-3.png-7ad2692d17ed8f42e933e9e6c56996d6.ctex"
+uid="uid://st0nsim62xay"
+path="res://.godot/imported/beam-2.png-4581c334dc80019f8dcda6a7b1503dc0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hazards/laser/beam-3.png"
-dest_files=["res://.godot/imported/beam-3.png-7ad2692d17ed8f42e933e9e6c56996d6.ctex"]
+source_file="res://assets/hazards/laser/sprites/beam-2.png"
+dest_files=["res://.godot/imported/beam-2.png-4581c334dc80019f8dcda6a7b1503dc0.ctex"]
 
 [params]
 

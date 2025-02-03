@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccmra412tabw5"
-path="res://.godot/imported/laser-sheet.png-6f6e9126636e68325dc47d9ec53dfbd2.ctex"
+uid="uid://by1s2jgi7viie"
+path="res://.godot/imported/missile-sheet.png-af10cf9fd2238b53c41bcedd56f3c7ac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hazards/laser/laser-sheet.png"
-dest_files=["res://.godot/imported/laser-sheet.png-6f6e9126636e68325dc47d9ec53dfbd2.ctex"]
+source_file="res://assets/hazards/missile/sprites/missile-sheet.png"
+dest_files=["res://.godot/imported/missile-sheet.png-af10cf9fd2238b53c41bcedd56f3c7ac.ctex"]
 
 [params]
 

@@ -1,13 +1,13 @@
 [gd_scene load_steps=20 format=3 uid="uid://dlt41xtu7ue3w"]
 
 [ext_resource type="Script" path="res://assets/hazards/laser/laser.gd" id="1_bgb33"]
-[ext_resource type="Texture2D" uid="uid://ccmra412tabw5" path="res://assets/hazards/laser/laser-sheet.png" id="1_mw51r"]
-[ext_resource type="Texture2D" uid="uid://coyaai1n6gvfa" path="res://assets/hazards/laser/beam-1.png" id="2_em25o"]
-[ext_resource type="Texture2D" uid="uid://st0nsim62xay" path="res://assets/hazards/laser/beam-2.png" id="3_eql3a"]
-[ext_resource type="Texture2D" uid="uid://c0q0a8vuqlmm3" path="res://assets/hazards/laser/beam-3.png" id="4_d0fx6"]
-[ext_resource type="Texture2D" uid="uid://dmn8ptwfvpfb4" path="res://assets/hazards/laser/beam-4.png" id="5_gtux6"]
-[ext_resource type="Texture2D" uid="uid://rnnhv57tytyy" path="res://assets/hazards/laser/charging-1.png" id="6_adg2n"]
-[ext_resource type="Texture2D" uid="uid://coibcnk7kc8uv" path="res://assets/hazards/laser/charging-2.png" id="7_5wegi"]
+[ext_resource type="Texture2D" uid="uid://ccmra412tabw5" path="res://assets/hazards/laser/sprites/laser-sheet.png" id="1_mw51r"]
+[ext_resource type="Texture2D" uid="uid://coyaai1n6gvfa" path="res://assets/hazards/laser/sprites/beam-1.png" id="2_em25o"]
+[ext_resource type="Texture2D" uid="uid://st0nsim62xay" path="res://assets/hazards/laser/sprites/beam-2.png" id="3_eql3a"]
+[ext_resource type="Texture2D" uid="uid://c0q0a8vuqlmm3" path="res://assets/hazards/laser/sprites/beam-3.png" id="4_d0fx6"]
+[ext_resource type="Texture2D" uid="uid://dmn8ptwfvpfb4" path="res://assets/hazards/laser/sprites/beam-4.png" id="5_gtux6"]
+[ext_resource type="Texture2D" uid="uid://rnnhv57tytyy" path="res://assets/hazards/laser/sprites/charging-1.png" id="6_adg2n"]
+[ext_resource type="Texture2D" uid="uid://coibcnk7kc8uv" path="res://assets/hazards/laser/sprites/charging-2.png" id="7_5wegi"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_gryp0"]
 frames = 4

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://6ce2jrn26a00"
-path="res://.godot/imported/zapper-beam4.png-4cfd9b463d3c2fab8623a19df496f938.ctex"
+path="res://.godot/imported/zapper-beam4.png-adca65b53b123bce6c58833783013c15.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hazards/zapper/zapper-beam4.png"
-dest_files=["res://.godot/imported/zapper-beam4.png-4cfd9b463d3c2fab8623a19df496f938.ctex"]
+source_file="res://assets/hazards/zapper/sprites/zapper-beam4.png"
+dest_files=["res://.godot/imported/zapper-beam4.png-adca65b53b123bce6c58833783013c15.ctex"]
 
 [params]
 
