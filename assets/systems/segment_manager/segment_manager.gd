@@ -3,12 +3,13 @@ class_name SegmentManager extends Node2D
 var available_segments: Array[PackedScene] = []
 var active_segments: Array[Node2D] = []
 var scroll_speed: float = 300.0
+var distance_since_last_segment: float = 0.0
 
 func _ready():
-	load_segments()
+	_load_segments()
 	prints("Segments loaded:", available_segments)
 
-func load_segments():
+func _load_segments():
 	available_segments.append_array(_load_segments_from_path("res://assets/segments/"))
 
 func _load_segments_from_path(path: String) -> Array[PackedScene]:
@@ -52,21 +53,22 @@ func _load_segments_from_path(path: String) -> Array[PackedScene]:
 	return segments
 
 func spawn_next_segment():
+	print("Spawning new segment...")
 	if available_segments.is_empty():
 		return
 	var segment = available_segments[randi() % available_segments.size()].instantiate()
-	segment.position.x = get_viewport_rect().size.x + 10
+	print("Selected segment \"", segment.name)
+	segment.position.x = get_viewport_rect().size.x
 	active_segments.append(segment)
 	add_child(segment)
 
 func _process(delta: float) -> void:
-	for segment in active_segments:
-		segment.position.x -= scroll_speed * delta
-		if segment.position.x + segment.segment_length < 0:
-			segment.cleanup()
-			active_segments.erase(segment)
+	distance_since_last_segment += scroll_speed * delta
 
 	if active_segments.is_empty():
 		spawn_next_segment()
-	elif active_segments[-1].position.x + active_segments[-1].segment_length < get_viewport_rect().size.x:
+	elif active_segments.front().length - distance_since_last_segment <= 0:
+		distance_since_last_segment = 0.0
 		spawn_next_segment()
+	elif active_segments.front().is_queued_for_deletion():
+		active_segments.pop_front()

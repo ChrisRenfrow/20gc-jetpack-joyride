@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvfwhjkl0kg6i"]
+
+[ext_resource type="Script" path="res://assets/segments/simple/basic_lasers/basic_lasers.gd" id="1_7duye"]
+[ext_resource type="PackedScene" uid="uid://dlt41xtu7ue3w" path="res://assets/hazards/laser/laser.tscn" id="1_8dixc"]
+
+[node name="BasicLasers" type="Node2D"]
+script = ExtResource("1_7duye")
+
+[node name="Laser" parent="." instance=ExtResource("1_8dixc")]
+position = Vector2(192, 288)
+charge_delay = 4.0
+
+[node name="Laser2" parent="." instance=ExtResource("1_8dixc")]
+position = Vector2(192, 64)

@@ -20,7 +20,7 @@ enum MissileState {
 @export var speed: float = 1000.0
 ## The number of seconds to wait before starting the AlertDuration timer.
 ## Used for chaining multiple missiles one after the other.
-@export var alert_delay: float = 0.0
+@export var alert_delay: float = 0.001
 
 @export_group("Debug")
 ## Homing marker to use for debugging purposes.
@@ -38,6 +38,23 @@ var _homing_position: Vector2
 @onready var trail_particles: GPUParticles2D = $TrailParticles
 @onready var alert_delay_timer: Timer = $AlertDelay
 @onready var alert_duration_timer: Timer = $AlertDuration
+
+## Returns the time until the missile enters the screen.
+## This is just the alert delay.
+func get_screen_enter_time() -> float:
+	return alert_delay
+
+## Returns the total time the missile spends on screen.
+## Calculated as the sum of:
+## - Alert duration time
+## - Lock-on delay time (if homing missile)
+## - Travel time across screen (screen width / speed)
+func get_total_onscreen_time() -> float:
+	return \
+			alert_duration_timer.wait_time + \
+			lock_on_delay + \
+			# Travel time
+			_screen_size.x / speed
 
 func _ready() -> void:
 	_init_missile()

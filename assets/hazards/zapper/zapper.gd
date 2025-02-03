@@ -1,11 +1,12 @@
 @tool
+class_name Zapper
 extends StaticBody2D
 
 ## The length of the zapper, updates in editor
 @export var arc_length: float = 256.0:
 	set(len):
 		arc_length = len
-		setup()
+		_setup()
 	get():
 		return arc_length
 
@@ -15,10 +16,27 @@ extends StaticBody2D
 		angle_degrees = rot
 		rotation_degrees = rot
 
-func _ready() -> void:
-	setup()
+var scroll_speed := 0.0
 
-func setup():
+## Returns the horizontal space (in pixels) taken up by this zapper including current offset.
+func get_total_horizontal_space() -> float:
+	return position.x + _base_horizontal_space()
+
+## Returns the base horizontal space needed by just the beam itself based on angle and length.
+func _base_horizontal_space() -> float:
+	return abs(arc_length * cos(angle_degrees))
+
+func _ready() -> void:
+	Globals.scroll_speed_changed.connect(_set_scroll_speed)
+	_setup()
+
+func _process(delta: float) -> void:
+	position.x -= scroll_speed * delta
+
+func _set_scroll_speed(new_speed: float) -> void:
+	scroll_speed = new_speed
+
+func _setup():
 	var new_shape: RectangleShape2D = $BeamShape.shape.duplicate()
 	new_shape.size.x = arc_length
 	$BeamShape.shape = new_shape

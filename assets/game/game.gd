@@ -9,5 +9,5 @@ var game_speed: float = 300.0
 func _process(delta: float) -> void:
 	game_speed += delta * 10
 
-	segment_manager.scroll_speed = game_speed
+	Globals.scroll_speed = game_speed
 	stage.speed = game_speed

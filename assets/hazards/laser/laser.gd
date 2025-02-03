@@ -47,6 +47,16 @@ var _charge_delay_timer := Timer.new()
 @onready var _beam_sprite: Sprite2D = $Beam/BeamSprite
 @onready var _beam_charging_sprite: Sprite2D = $Beam/BeamChargingSprite
 
+## Returns the initial delay before the diodes begin moving into their firing positions
+func get_screen_enter_time() -> float:
+	return enter_delay
+
+## Returns the total amount of time the laser spends between starting to charge and finishing firing.
+## This does not include the entry delay or physical movement of diodes.
+## Returns: float - The total time in seconds of charge delay, charge, and fire phases
+func get_total_onscreen_time() -> float:
+	return charge_delay + charge_time + fire_time
+
 func _ready() -> void:
 	_screen_size = get_viewport_rect().size
 
@@ -94,20 +104,20 @@ func _change_state(new_state: LaserState) -> void:
 
 
 func _setup_positions() -> void:
-	position.x = 0
+	global_position.x = 0
 	# Calculate diode position endpoints
 	_diode_a_target_pos = Vector2(DIODE_MARGIN, _diode_a.position.y)
 	_diode_b_target_pos = Vector2(_screen_size.x - DIODE_MARGIN, _diode_b.position.y)
 	# Set diode positions off-screen
-	_diode_a.position.x = _diode_a_target_pos.x - DIODE_OFFSET
-	_diode_b.position.x = _diode_b_target_pos.x + DIODE_OFFSET
+	_diode_a.global_position.x = _diode_a_target_pos.x - DIODE_OFFSET
+	_diode_b.global_position.x = _diode_b_target_pos.x + DIODE_OFFSET
 	# Set beam length and position
 	_beam_sprite.region_rect.size.x = _diode_b_target_pos.x - _diode_a_target_pos.x
 	_beam_charging_sprite.region_rect.size.x = _diode_b_target_pos.x - _diode_a_target_pos.x
-	_beam.position.x = _screen_size.x / 2
+	_beam.global_position.x = _screen_size.x / 2
 	# Set collider length and position
 	_laser_shape.shape.size.x = _diode_b_target_pos.x - _diode_a_target_pos.x
-	_laser_shape.position.x = _screen_size.x / 2
+	_laser_shape.global_position.x = _screen_size.x / 2
 
 func _setup_timers() -> void:
 	# TODO: Make the use of timers consistent, either use Nodes or just set them up internally like this
