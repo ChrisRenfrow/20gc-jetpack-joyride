@@ -18,21 +18,13 @@ extends StaticBody2D
 
 var scroll_speed := 0.0
 
-## Returns the horizontal space (in pixels) taken up by this zapper including current offset.
-func get_total_horizontal_space() -> float:
-	return position.x + _base_horizontal_space() + 10 # plus a little buffer
-
-## Returns the base horizontal space needed by just the beam itself based on angle and length.
-func _base_horizontal_space() -> float:
-	return abs(arc_length * cos(angle_degrees))
-
 func _ready() -> void:
 	Globals.scroll_speed_changed.connect(_set_scroll_speed)
 	_setup()
 
 func _process(delta: float) -> void:
 	position.x -= scroll_speed * delta
-
+	# Bounds checking
 	if $TrodeA.global_position.x <= -10 and $TrodeB.global_position.x <= -10:
 		queue_free()
 

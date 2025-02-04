@@ -47,16 +47,6 @@ var _charge_delay_timer := Timer.new()
 @onready var _beam_sprite: Sprite2D = $Beam/BeamSprite
 @onready var _beam_charging_sprite: Sprite2D = $Beam/BeamChargingSprite
 
-## Returns the initial delay before the diodes begin moving into their firing positions
-func get_screen_enter_time() -> float:
-	return enter_delay
-
-## Returns the total amount of time the laser spends between starting to charge and finishing firing.
-## This does not include the entry delay or physical movement of diodes.
-## Returns: float - The total time in seconds of charge delay, charge, and fire phases
-func get_total_onscreen_time() -> float:
-	return charge_delay + charge_time + fire_time + 1.0 # Add a little buffer for moving on/off screen
-
 func _ready() -> void:
 	_screen_size = get_viewport_rect().size
 
