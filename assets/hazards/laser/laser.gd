@@ -55,7 +55,7 @@ func get_screen_enter_time() -> float:
 ## This does not include the entry delay or physical movement of diodes.
 ## Returns: float - The total time in seconds of charge delay, charge, and fire phases
 func get_total_onscreen_time() -> float:
-	return charge_delay + charge_time + fire_time
+	return charge_delay + charge_time + fire_time + 1.0 # Add a little buffer for moving on/off screen
 
 func _ready() -> void:
 	_screen_size = get_viewport_rect().size

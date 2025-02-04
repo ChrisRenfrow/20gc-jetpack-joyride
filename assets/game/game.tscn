@@ -9,8 +9,13 @@
 script = ExtResource("1_htx0q")
 
 [node name="Player" parent="." instance=ExtResource("2_oqv7w")]
+visible = false
 position = Vector2(128, 187)
 
 [node name="SegmentManager" parent="." instance=ExtResource("3_qs31t")]
 
 [node name="BasicStage" parent="." instance=ExtResource("4_4wdhq")]
+
+[node name="Distance" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

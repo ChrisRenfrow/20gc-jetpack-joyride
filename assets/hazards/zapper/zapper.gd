@@ -20,7 +20,7 @@ var scroll_speed := 0.0
 
 ## Returns the horizontal space (in pixels) taken up by this zapper including current offset.
 func get_total_horizontal_space() -> float:
-	return position.x + _base_horizontal_space()
+	return position.x + _base_horizontal_space() + 10 # plus a little buffer
 
 ## Returns the base horizontal space needed by just the beam itself based on angle and length.
 func _base_horizontal_space() -> float:
@@ -32,6 +32,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	position.x -= scroll_speed * delta
+
+	if $TrodeA.global_position.x <= -10 and $TrodeB.global_position.x <= -10:
+		queue_free()
 
 func _set_scroll_speed(new_speed: float) -> void:
 	scroll_speed = new_speed

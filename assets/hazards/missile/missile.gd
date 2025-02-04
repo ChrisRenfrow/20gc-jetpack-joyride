@@ -86,11 +86,9 @@ func _process(_delta: float) -> void:
 func _init_missile() -> void:
 	_screen_size = get_viewport_rect().size
 	_player = get_tree().get_first_node_in_group("player")
-
-	print(_player.name)
-
 	global_position.x = _screen_size.x + 50
 	alert_sprite.global_position.x = _screen_size.x - 40
+	alert_sprite.hide()
 
 func _setup_alert_delay() -> void:
 	if alert_delay > 0.001:
@@ -109,7 +107,7 @@ func _update_homing_position() -> void:
 		_homing_position = Vector2(0, position.y)
 
 func _check_bounds() -> void:
-	if global_position.x < 0:
+	if global_position.x < -20:
 		print("Missile off-screen, freeing")
 		queue_free()
 
