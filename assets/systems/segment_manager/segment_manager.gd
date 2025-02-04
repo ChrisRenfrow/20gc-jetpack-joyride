@@ -12,7 +12,8 @@ enum State {
 
 @export var zapper_probability: float = 0.8
 @export var laser_probability: float = 0.2
-@export var missile_probability: float = 0.4
+# Missiles can appear any time zappers (or coins) are on screen, so their probability needs to be pretty low
+@export var missile_probability: float = 0.02
 #@export var coin_probability: float = 0.4
 
 var scroll_speed: float:
@@ -28,8 +29,18 @@ var _segments := {
 	"lasers": [] as Array[PackedScene],
 	"missiles": [] as Array[PackedScene]
 }
-var _active_segments: Array[BaseSegment] = []
-var _missile_freq := 0.0
+
+var _active_segments := {
+	"zappers": [] as Array[BaseSegment],
+	"lasers": [] as Array[BaseSegment],
+	"missiles": [] as Array[BaseSegment]
+}
+
+var _num_active_segments: int = 0:
+	get: return _active_segments.keys().reduce(
+			func(c, k): return c + _active_segments.get(k).size(),
+			0
+		)
 
 func _ready() -> void:
 	for segment_type in _segments.keys():
@@ -38,13 +49,6 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	_clean_inactive_segments()
-
-	# Manages missile frequency per 100m by decrementing 1 per 100m
-	if int(distance / 100.0) % 100 == 0:
-		_missile_freq = maxf(_missile_freq - 1, 0)
-
-	if not _should_spawn_segment():
-		return
 
 	match _state:
 		State.DEFAULT:
@@ -88,10 +92,11 @@ func _load_segments_from_path(path: String) -> Array[PackedScene]:
 	return segments
 
 func _clean_inactive_segments() -> void:
-	_active_segments = _active_segments.filter(func(segment): return is_instance_valid(segment))
-
-func _should_spawn_segment() -> bool:
-	return int(distance) % 10 == 0 and _active_segments.size() <= 1
+	for segment_type in _active_segments.keys():
+		var new_active_segments = _active_segments.get(segment_type).filter(
+				func(segment): return is_instance_valid(segment)
+			)
+		_active_segments[segment_type] = new_active_segments
 
 func _handle_default_state() -> void:
 	if _try_spawn_laser():
@@ -101,31 +106,30 @@ func _handle_default_state() -> void:
 	_try_spawn_missile()
 
 func _handle_laser_state() -> void:
-	if _active_segments.is_empty():
+	if _active_segments["lasers"].is_empty():
 		_state = State.DEFAULT
 
 func _try_spawn_laser() -> bool:
-	if randf() < laser_probability and not _segments.lasers.is_empty() and _active_segments.is_empty():
+	if randf() < laser_probability and not _segments.lasers.is_empty() and _num_active_segments == 0:
 		_spawn_segment("lasers")
 		_state = State.LASER
 		return true
 	return false
 
 func _try_spawn_zapper() -> void:
-	if randf() < zapper_probability and not _segments.zappers.is_empty() and _active_segments.is_empty():
+	if randf() < zapper_probability and not _segments.zappers.is_empty() and _num_active_segments == 0:
 		var segment = _spawn_segment("zappers")
 		segment.global_position.x = get_viewport_rect().size.x
 
 func _try_spawn_missile() -> void:
-	if _missile_freq >= MISSILE_MAX_FREQ:
+	if _active_segments["missiles"].size() > 0:
 		return
 
 	if randf() < missile_probability and not _segments.missiles.is_empty():
 		_spawn_segment("missiles")
-		_missile_freq += 1
 
 func _spawn_segment(type: String) -> BaseSegment:
 	var segment = _segments[type].pick_random().instantiate()
 	add_child(segment)
-	_active_segments.append(segment)
+	_active_segments[type].append(segment)
 	return segment
