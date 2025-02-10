@@ -5,6 +5,7 @@ enum MissileState {
     DELAY,
     ALERT,
     ACTIVE,
+    OFF_SCREEN,
 }
 
 @export_group("Homing")
@@ -52,7 +53,7 @@ func _physics_process(delta: float) -> void:
 	queue_redraw()
 
 	match _state:
-		MissileState.ACTIVE:
+		MissileState.ACTIVE, MissileState.OFF_SCREEN:
 			position.x -= speed * delta
 		MissileState.ALERT:
 			if not homing or alert_duration_timer.time_left <= lock_on_delay:
@@ -72,6 +73,8 @@ func _init_missile() -> void:
 	global_position.x = _screen_size.x + 50
 	alert_sprite.global_position.x = _screen_size.x - 40
 	alert_sprite.hide()
+	# Doesn't actually get triggered until one-shot is enabled and the cycle finishes
+	trail_particles.finished.connect(_on_trail_particles_finished)
 
 func _setup_alert_delay() -> void:
 	if alert_delay > 0.001:
@@ -90,9 +93,12 @@ func _update_homing_position() -> void:
 		_homing_position = Vector2(0, position.y)
 
 func _check_bounds() -> void:
-	if global_position.x < -20:
-		print("Missile off-screen, freeing")
-		queue_free()
+	if global_position.x < -20 and _state != MissileState.OFF_SCREEN:
+		print("Missile off-screen, waiting for particles to finish")
+		_state = MissileState.OFF_SCREEN
+		trail_particles.emitting = false
+		trail_particles.one_shot = true
+		trail_particles.emitting = true
 
 func _start_alert_phase() -> void:
 	print("Delay concluded, starting alert phase")
@@ -109,3 +115,7 @@ func _on_alert_duration_timeout() -> void:
 	_state = MissileState.ACTIVE
 	alert_sprite.hide()
 	trail_particles.emitting = true
+
+func _on_trail_particles_finished() -> void:
+	print("Particles finished, freeing")
+	queue_free()
