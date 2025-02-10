@@ -36,6 +36,7 @@ version_control/autoload_on_startup=true
 
 player=""
 hazard=""
+coin=""
 
 [input]
 
@@ -51,6 +52,7 @@ jump={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Hazard"
 2d_physics/layer_4="Minion"
+2d_physics/layer_5="Coin"
 
 [rendering]
 
