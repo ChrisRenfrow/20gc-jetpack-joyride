@@ -17,9 +17,9 @@ position = Vector2(128, 187)
 
 [node name="BasicStage" parent="." instance=ExtResource("4_4wdhq")]
 
+[node name="MinionManager" parent="." instance=ExtResource("5_0x6jl")]
+minion_y_position = 300.0
+
 [node name="Distance" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
-
-[node name="MinionManager" parent="." instance=ExtResource("5_0x6jl")]
-minion_y_position = 300.0
