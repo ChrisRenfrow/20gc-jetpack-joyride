@@ -1,6 +1,17 @@
 class_name Player
 extends CharacterBody2D
 
+enum PlayerState {
+	## Placeholder state for when the player enters the scene at the start of a round
+	INTRO,
+	## Player input enabled, active play
+	ACTIVE,
+	## Player hit a hazard, falling to ground dramatically
+	HIT,
+	## Game-over
+	KO,
+}
+
 signal hit
 
 @export_group("Movement")
@@ -15,42 +26,56 @@ signal hit
 @onready var casing_particles: GPUParticles2D = $JetpackSprite/CasingParticles
 
 var _is_dead := false
+var _state := PlayerState.ACTIVE
+var _bounce_count: int = 0
 
 func _ready() -> void:
 	hitbox.position = Vector2.ZERO
 	velocity = Vector2.ZERO
 
 func _physics_process(delta: float) -> void:
-	if _is_dead:
-		return
+	match _state:
+		PlayerState.ACTIVE:
+			_handle_movement(delta)
+		PlayerState.HIT:
+			_handle_hit_movement(delta)
 
-	_handle_movement(delta)
+func _process(_delat: float) -> void:
 	_handle_animation()
-	_apply_movement(delta)
 
 func _handle_movement(delta: float) -> void:
-	if Input.is_action_pressed("jump"):
+	if _state == PlayerState.ACTIVE and Input.is_action_pressed("jump"):
 		velocity.y -= jetpack_thrust * delta
 	else:
 		velocity.y += player_gravity * delta
 
 	velocity.y = minf(velocity.y, max_velocity)
-
-func _handle_animation() -> void:
-	var is_jetpack_active := Input.is_action_pressed("jump")
-	if is_jetpack_active:
-		_activate_jetpack()
-	else:
-		_deactivate_jetpack()
-
-func _apply_movement(delta: float) -> void:
 	if move_and_collide(velocity * delta):
 		velocity = Vector2.ZERO
 	else:
 		position.y += velocity.y * delta
 
+func _handle_hit_movement(delta: float) -> void:
+	velocity.y += player_gravity * delta
+	position.y += velocity.y * delta
+
+	if move_and_collide(velocity * delta):
+		if _bounce_count < 3:
+			velocity.y = -300.0 * pow(0.5, _bounce_count)
+			_bounce_count += 1
+		else:
+			velocity = Vector2.ZERO
+			_state = PlayerState.KO
+
+func _handle_animation() -> void:
+	var is_jetpack_active := Input.is_action_pressed("jump")
+	if is_jetpack_active and _state == PlayerState.ACTIVE:
+		_activate_jetpack()
+	else:
+		_deactivate_jetpack()
+
 func _on_hitzone_body_entered(body: Node2D) -> void:
-	if _is_dead:
+	if _state != PlayerState.ACTIVE:
 		return
 
 	if body.is_in_group("hazard"):
@@ -60,7 +85,7 @@ func _on_hitzone_body_entered(body: Node2D) -> void:
 
 func _handle_hazard_collision() -> void:
 	print("Hit hazard, game-over.")
-	_is_dead = true
+	_state = PlayerState.HIT
 	hit.emit()
 
 func _handle_coin_collision(coin: Node2D) -> void:
