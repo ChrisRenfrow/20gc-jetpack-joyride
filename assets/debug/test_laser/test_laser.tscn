@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dsd1ehisxgcag" path="res://assets/player/player.tscn" id="1_whcfk"]
 [ext_resource type="PackedScene" uid="uid://dmcxcv1lrfyyc" path="res://assets/stages/basic_stage.tscn" id="2_0f5no"]
-[ext_resource type="PackedScene" uid="uid://cvfwhjkl0kg6i" path="res://assets/segments/simple/basic_lasers/basic_lasers.tscn" id="3_4f0cl"]
+[ext_resource type="PackedScene" uid="uid://cvfwhjkl0kg6i" path="res://assets/segments/lasers/top_and_bottom/top_and_bottom.tscn" id="3_4f0cl"]
 
 [node name="TestLaser" type="Node2D"]
 

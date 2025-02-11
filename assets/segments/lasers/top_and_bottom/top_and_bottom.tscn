@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvfwhjkl0kg6i"]
+
+[ext_resource type="Script" path="res://assets/segments/lasers/top_and_bottom/top_and_bottom.gd" id="1_uq7dp"]
+[ext_resource type="PackedScene" uid="uid://dlt41xtu7ue3w" path="res://assets/hazards/laser/laser.tscn" id="2_wnag4"]
+
+[node name="TopAndBottom" type="Node2D"]
+script = ExtResource("1_uq7dp")
+
+[node name="Laser" parent="." instance=ExtResource("2_wnag4")]
+position = Vector2(192, 288)
+charge_delay = 4.0
+
+[node name="Laser2" parent="." instance=ExtResource("2_wnag4")]
+position = Vector2(192, 64)

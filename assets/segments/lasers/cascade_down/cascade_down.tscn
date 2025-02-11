@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ekdgn50psnal"]
+
+[ext_resource type="PackedScene" uid="uid://dlt41xtu7ue3w" path="res://assets/hazards/laser/laser.tscn" id="1_k007f"]
+[ext_resource type="Script" path="res://assets/segments/lasers/cascade_down/cascade_down.gd" id="1_s2o8p"]
+
+[node name="CascadeDown" type="Node2D"]
+script = ExtResource("1_s2o8p")
+
+[node name="Laser" parent="." instance=ExtResource("1_k007f")]
+position = Vector2(16, 48)
+
+[node name="Laser2" parent="." instance=ExtResource("1_k007f")]
+position = Vector2(16, 160)
+charge_delay = 4.0
+
+[node name="Laser3" parent="." instance=ExtResource("1_k007f")]
+position = Vector2(16, 272)
+charge_delay = 8.0

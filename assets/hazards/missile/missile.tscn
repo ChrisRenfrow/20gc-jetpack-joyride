@@ -130,7 +130,7 @@ visibility_rect = Rect2(-500, -15, 2000, 30)
 [node name="MissileSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1qokv")
 autoplay = "default"
-frame_progress = 0.514408
+frame_progress = 0.469737
 
 [node name="AlertSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kx70l")

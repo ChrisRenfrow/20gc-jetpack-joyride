@@ -20,7 +20,6 @@ enum SegmentCategory {
 	TIMED,
 }
 
-var segment_category := SegmentCategory.SPATIAL
 var scroll_speed: float
 
 func cleanup():

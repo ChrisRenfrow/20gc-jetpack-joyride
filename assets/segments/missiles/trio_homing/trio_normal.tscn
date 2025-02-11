@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5trv6cybe1iw"]
+
+[ext_resource type="Script" path="res://assets/segments/missiles/trio_normal/trio_normal.gd" id="1_8shjm"]
+[ext_resource type="PackedScene" uid="uid://dx11w820lxb32" path="res://assets/hazards/missile/missile.tscn" id="2_xq5ch"]
+
+[node name="TrioHoming" type="Node2D"]
+script = ExtResource("1_8shjm")
+
+[node name="Missile" parent="." instance=ExtResource("2_xq5ch")]
+position = Vector2(256, 32)
+homing = true
+
+[node name="Missile2" parent="." instance=ExtResource("2_xq5ch")]
+position = Vector2(256, 160)
+homing = true
+alert_delay = 1.0
+
+[node name="Missile5" parent="." instance=ExtResource("2_xq5ch")]
+position = Vector2(256, 288)
+homing = true
+alert_delay = 2.0

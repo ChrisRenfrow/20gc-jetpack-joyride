@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://bieq4b8puaovg"]
 
 [ext_resource type="PackedScene" uid="uid://dx11w820lxb32" path="res://assets/hazards/missile/missile.tscn" id="1_bl8nc"]
-[ext_resource type="Script" path="res://assets/segments/missiles/basic_missiles/basic_missiles.gd" id="1_hjtre"]
+[ext_resource type="Script" path="res://assets/segments/missiles/trio_normal/trio_normal.gd" id="1_hjtre"]
 
-[node name="BasicMissiles" type="Node2D"]
+[node name="TrioNormal" type="Node2D"]
 script = ExtResource("1_hjtre")
 
 [node name="Missile" parent="." instance=ExtResource("1_bl8nc")]
@@ -12,14 +12,6 @@ position = Vector2(256, 32)
 [node name="Missile2" parent="." instance=ExtResource("1_bl8nc")]
 position = Vector2(256, 160)
 alert_delay = 1.0
-
-[node name="Missile3" parent="." instance=ExtResource("1_bl8nc")]
-position = Vector2(512, 88)
-alert_delay = 3.0
-
-[node name="Missile4" parent="." instance=ExtResource("1_bl8nc")]
-position = Vector2(512, 224)
-alert_delay = 4.0
 
 [node name="Missile5" parent="." instance=ExtResource("1_bl8nc")]
 position = Vector2(256, 288)
