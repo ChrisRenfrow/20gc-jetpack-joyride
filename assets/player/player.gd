@@ -2,7 +2,6 @@ class_name Player
 extends CharacterBody2D
 
 signal hit
-signal coin_get
 
 @export_group("Movement")
 @export var player_gravity: float = 500.0
@@ -67,7 +66,7 @@ func _handle_hazard_collision() -> void:
 func _handle_coin_collision(coin: Node2D) -> void:
 	print("Coin touched")
 	coin.queue_free()
-	coin_get.emit()
+	Globals.coins += 1
 
 func _activate_jetpack() -> void:
 	jetpack_sprite.play("firing")

@@ -8,3 +8,4 @@ var scroll_speed: float = 300.0:
 		scroll_speed_changed.emit(value)
 
 var distance: float = 0.0
+var coins: int = 0
