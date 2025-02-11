@@ -7,7 +7,7 @@
 script = ExtResource("1_jaee1")
 
 [node name="Zapper" parent="." instance=ExtResource("2_4p50s")]
-position = Vector2(32, 32)
+position = Vector2(32, 40)
 
 [node name="Zapper3" parent="." instance=ExtResource("2_4p50s")]
-position = Vector2(416, 288)
+position = Vector2(416, 312)

@@ -7,12 +7,12 @@
 script = ExtResource("1_hjtre")
 
 [node name="Missile" parent="." instance=ExtResource("1_bl8nc")]
-position = Vector2(256, 32)
+position = Vector2(256, 40)
 
 [node name="Missile2" parent="." instance=ExtResource("1_bl8nc")]
-position = Vector2(256, 160)
+position = Vector2(256, 176)
 alert_delay = 1.0
 
 [node name="Missile5" parent="." instance=ExtResource("1_bl8nc")]
-position = Vector2(256, 288)
+position = Vector2(256, 312)
 alert_delay = 2.0

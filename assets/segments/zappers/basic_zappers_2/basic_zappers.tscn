@@ -7,13 +7,13 @@
 script = ExtResource("1_vwbn7")
 
 [node name="Zapper" parent="." instance=ExtResource("2_wjv6f")]
-position = Vector2(32, 32)
+position = Vector2(32, 40)
 rotation = 0.785398
 arc_length = 150.0
 angle_degrees = 45.0
 
 [node name="Zapper3" parent="." instance=ExtResource("2_wjv6f")]
-position = Vector2(489, 326)
+position = Vector2(489, 312)
 rotation = -0.785398
 arc_length = 150.0
 angle_degrees = -45.0

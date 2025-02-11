@@ -7,15 +7,15 @@
 script = ExtResource("1_8shjm")
 
 [node name="Missile" parent="." instance=ExtResource("2_xq5ch")]
-position = Vector2(256, 32)
+position = Vector2(256, 40)
 homing = true
 
 [node name="Missile2" parent="." instance=ExtResource("2_xq5ch")]
-position = Vector2(256, 160)
+position = Vector2(256, 176)
 homing = true
 alert_delay = 1.0
 
 [node name="Missile5" parent="." instance=ExtResource("2_xq5ch")]
-position = Vector2(256, 288)
+position = Vector2(256, 312)
 homing = true
 alert_delay = 2.0

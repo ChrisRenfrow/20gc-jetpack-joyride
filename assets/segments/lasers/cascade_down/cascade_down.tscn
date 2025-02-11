@@ -7,12 +7,12 @@
 script = ExtResource("1_s2o8p")
 
 [node name="Laser" parent="." instance=ExtResource("1_k007f")]
-position = Vector2(16, 48)
+position = Vector2(16, 40)
 
 [node name="Laser2" parent="." instance=ExtResource("1_k007f")]
-position = Vector2(16, 160)
+position = Vector2(16, 176)
 charge_delay = 4.0
 
 [node name="Laser3" parent="." instance=ExtResource("1_k007f")]
-position = Vector2(16, 272)
+position = Vector2(16, 312)
 charge_delay = 8.0
