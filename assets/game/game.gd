@@ -26,7 +26,6 @@ func _process(delta: float) -> void:
 
 	Globals.scroll_speed = game_speed
 	Globals.distance += game_speed * delta
-	$Distance.text = str(Globals.distance)
 
 func _on_player_hit() -> void:
 	_state = GameState.HIT
