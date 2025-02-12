@@ -1,6 +1,11 @@
 extends CharacterBody2D
 
-enum State {OK, SHOCK, RUN, KO}
+enum State {
+	OK,
+	SHOCK,
+	RUN,
+	KO,
+}
 
 ## A vector representing the direction the minion is facing (LEFT or RIGHT)
 @export var facing: Vector2 = Vector2.LEFT
@@ -50,7 +55,7 @@ func _process(delta: float) -> void:
 		State.RUN:
 			velocity = run_speed * facing
 		State.KO:
-			pass
+			velocity = Vector2.ZERO
 
 	velocity += game_movement
 	position += velocity * delta
@@ -71,3 +76,7 @@ func is_facing_player() -> bool:
 
 func is_in_range() -> bool:
 	return absf(position.x - player.position.x) <= awareness_range
+
+func _on_hitbox_body_entered(_body: Node2D) -> void:
+	$MinionSprite.play("ko")
+	state = State.KO

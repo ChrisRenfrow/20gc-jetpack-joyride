@@ -1,7 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://t2yvvugyyfs7"]
+[gd_scene load_steps=19 format=3 uid="uid://t2yvvugyyfs7"]
 
 [ext_resource type="Texture2D" uid="uid://bjak72u6abv3r" path="res://assets/minion/minion-sheet.png" id="1_g2w02"]
 [ext_resource type="Script" path="res://assets/minion/minion.gd" id="1_lqive"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ijs6"]
+atlas = ExtResource("1_g2w02")
+region = Rect2(384, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qtw28"]
 atlas = ExtResource("1_g2w02")
@@ -55,6 +59,14 @@ region = Rect2(288, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_4ijs6")
+}],
+"loop": true,
+"name": &"ko",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_qtw28")
 }, {
 "duration": 1.0,
@@ -106,7 +118,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5imli"]
-size = Vector2(32, 24)
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cfid5"]
+size = Vector2(32, 22)
 
 [node name="Minion" type="CharacterBody2D"]
 collision_layer = 8
@@ -115,10 +130,20 @@ script = ExtResource("1_lqive")
 
 [node name="MinionSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hdenv")
-animation = &"rolling"
+animation = &"ko"
 autoplay = "rolling"
-frame_progress = 0.584095
 
 [node name="MinionCollider" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
+position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_5imli")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_cfid5")
+debug_color = Color(1, 0.414869, 0.362523, 0.42)
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
