@@ -114,6 +114,7 @@ animations = [{
 radius = 13.0
 
 [node name="Missile" type="StaticBody2D" groups=["hazard"]]
+z_index = 1
 position = Vector2(49, 216)
 collision_layer = 4
 collision_mask = 0

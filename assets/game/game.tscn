@@ -14,12 +14,12 @@ script = ExtResource("1_htx0q")
 [node name="Player" parent="." instance=ExtResource("2_oqv7w")]
 position = Vector2(128, 187)
 
-[node name="SegmentManager" parent="." instance=ExtResource("3_qs31t")]
-
 [node name="BasicStage" parent="." instance=ExtResource("4_4wdhq")]
 
 [node name="MinionManager" parent="." instance=ExtResource("5_0x6jl")]
 minion_y_position = 300.0
+
+[node name="SegmentManager" parent="." instance=ExtResource("3_qs31t")]
 
 [node name="Hud" parent="." instance=ExtResource("6_noswl")]
 offset_right = 640.0
