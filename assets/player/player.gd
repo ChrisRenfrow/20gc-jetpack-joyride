@@ -19,6 +19,9 @@ signal hit
 @export var jetpack_thrust: float = 600.0
 @export var max_velocity: float = 600.0
 
+@export_group("Debug")
+@export var invincible: bool = false
+
 @onready var hitbox: Area2D = $Hitbox
 @onready var jetpack_sprite: AnimatedSprite2D = $JetpackSprite
 @onready var bullet_particles: GPUParticles2D = $JetpackSprite/BulletParticles
@@ -88,8 +91,9 @@ func _handle_hazard_collision(hazard: Node2D) -> void:
 	# Missile case
 	if hazard.has_method("explode"):
 		hazard.explode()
-	_state = PlayerState.HIT
-	hit.emit()
+	if not invincible:
+		_state = PlayerState.HIT
+		hit.emit()
 
 func _handle_coin_collision(coin: Node2D) -> void:
 	print("Coin touched")
