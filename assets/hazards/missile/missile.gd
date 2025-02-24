@@ -48,7 +48,7 @@ var _homing_position: Vector2
 func explode() -> void:
 	_state = MissileState.BOOM
 	missile_sprite.hide()
-	missile_shape.disabled = true
+	missile_shape.set_deferred("disabled", true)
 	trail_particles.emitting = false
 	explosion.explode()
 	await get_tree().create_timer(2).timeout
