@@ -5,6 +5,7 @@ enum MissileState {
     DELAY,
     ALERT,
     ACTIVE,
+    BOOM,
     OFF_SCREEN,
 }
 
@@ -35,10 +36,23 @@ var _player: Node2D
 var _state: MissileState = MissileState.DELAY
 var _homing_position: Vector2
 
+@onready var missile_sprite: AnimatedSprite2D = $MissileSprite
+@onready var missile_shape: CollisionShape2D = $MissileShape
 @onready var alert_sprite: AnimatedSprite2D = $AlertSprite
 @onready var trail_particles: GPUParticles2D = $TrailParticles
 @onready var alert_delay_timer: Timer = $AlertDelay
 @onready var alert_duration_timer: Timer = $AlertDuration
+@onready var explosion: Node2D = $Explosion
+
+## Stops the missile and plays exploding animation/particles before despawning
+func explode() -> void:
+	_state = MissileState.BOOM
+	missile_sprite.hide()
+	missile_shape.disabled = true
+	trail_particles.emitting = false
+	explosion.explode()
+	await get_tree().create_timer(2).timeout
+	queue_free()
 
 func _ready() -> void:
 	_init_missile()

@@ -79,12 +79,15 @@ func _on_hitzone_body_entered(body: Node2D) -> void:
 		return
 
 	if body.is_in_group("hazard"):
-		_handle_hazard_collision()
+		_handle_hazard_collision(body)
 	elif body.is_in_group("coin"):
 		_handle_coin_collision(body)
 
-func _handle_hazard_collision() -> void:
+func _handle_hazard_collision(hazard: Node2D) -> void:
 	print("Hit hazard, game-over.")
+	# Missile case
+	if hazard.has_method("explode"):
+		hazard.explode()
 	_state = PlayerState.HIT
 	hit.emit()
 

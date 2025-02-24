@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://dx11w820lxb32"]
+[gd_scene load_steps=21 format=3 uid="uid://dx11w820lxb32"]
 
 [ext_resource type="Script" path="res://assets/hazards/missile/missile.gd" id="1_64slj"]
 [ext_resource type="Texture2D" uid="uid://by1s2jgi7viie" path="res://assets/hazards/missile/sprites/missile-sheet.png" id="1_rnhwk"]
+[ext_resource type="PackedScene" uid="uid://ppjeq8by8ijb" path="res://assets/hazards/missile/explosion.tscn" id="3_gu55p"]
 
 [sub_resource type="Curve" id="Curve_83rub"]
 _data = [Vector2(0, 0.505703), 0.0, -1.86288, 0, 0, Vector2(1, 0.021978), 0.0, 0.0, 0, 0]
@@ -115,7 +116,6 @@ radius = 13.0
 
 [node name="Missile" type="StaticBody2D" groups=["hazard"]]
 z_index = 1
-position = Vector2(49, 216)
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_64slj")
@@ -149,6 +149,8 @@ autostart = true
 [node name="AlertDelay" type="Timer" parent="."]
 wait_time = 0.001
 one_shot = true
+
+[node name="Explosion" parent="." instance=ExtResource("3_gu55p")]
 
 [connection signal="timeout" from="AlertDuration" to="." method="_on_alert_duration_timeout"]
 [connection signal="timeout" from="AlertDelay" to="." method="_on_alert_delay_timeout"]
