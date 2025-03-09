@@ -17,6 +17,9 @@ offset_right = 640.0
 offset_bottom = 360.0
 
 [node name="StartButton" type="Button" parent="ButtonContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 text = "Start"
+
+[connection signal="pressed" from="ButtonContainer/StartButton" to="." method="_on_start_button_pressed"]

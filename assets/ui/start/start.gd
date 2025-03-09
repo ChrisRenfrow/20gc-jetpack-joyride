@@ -1,6 +1,6 @@
 extends Control
 
-@onready var start_button := $ButtonContainer/Start
+@onready var start_button := %StartButton
 
 var _state := Globals.GameState.START:
 	set(state):
