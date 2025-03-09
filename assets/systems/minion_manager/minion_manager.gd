@@ -1,4 +1,4 @@
-extends Node2D
+class_name MinionManager extends Node2D
 
 @export_group("Spawning")
 ## Seconds to wait before trying to spawn a minion
@@ -7,6 +7,8 @@ extends Node2D
 @export var minion_chance := 0.5:
 	set(val):
 		return clampf(val, 0.0, 1.0)
+## How many minions are allowed on the scene at once
+@export var minion_max := 10
 
 @export_group("Movement & Positioning")
 ## The minions base speed
@@ -23,13 +25,23 @@ extends Node2D
 var _minion_scene: PackedScene = load("res://assets/minion/minion.tscn")
 var _spawn_rate_timer := Timer.new()
 
+func reset() -> void:
+	get_children().filter(func(child): return child.is_in_group("minion")).map(func(child): child.queue_free())
+	_spawn_rate_timer.stop()
+
+func start() -> void:
+	_spawn_rate_timer.start()
+
 func _ready() -> void:
 	_spawn_rate_timer.wait_time = minion_spawn_rate
-	_spawn_rate_timer.autostart = true
 	_spawn_rate_timer.timeout.connect(_spawn_rate_timer_timeout)
 	add_child(_spawn_rate_timer)
 
 func _spawn_minion():
+	var n_minions = get_children().filter(func(child): return child.is_in_group("minion")).size()
+	if n_minions >= minion_max:
+		return
+
 	var minion = _minion_scene.instantiate()
 	var direction = Vector2.LEFT if randf() >= 0.5 else Vector2.RIGHT
 

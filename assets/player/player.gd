@@ -12,7 +12,7 @@ enum PlayerState {
 	KO,
 }
 
-signal hit
+signal player_state_change(new_state: PlayerState)
 
 @export_group("Movement")
 @export var player_gravity: float = 500.0
@@ -28,9 +28,15 @@ signal hit
 @onready var exhaust_particles: GPUParticles2D = $JetpackSprite/ExhaustParticles
 @onready var casing_particles: GPUParticles2D = $JetpackSprite/CasingParticles
 
-var _is_dead := false
-var _state := PlayerState.ACTIVE
+var _state := PlayerState.ACTIVE:
+	set(new_state):
+		player_state_change.emit(new_state)
+		_state = new_state
+
 var _bounce_count: int = 0
+
+func reset() -> void:
+	_state = PlayerState.ACTIVE
 
 func _ready() -> void:
 	hitbox.position = Vector2.ZERO
@@ -93,7 +99,6 @@ func _handle_hazard_collision(hazard: Node2D) -> void:
 		hazard.explode()
 	if not invincible:
 		_state = PlayerState.HIT
-		hit.emit()
 
 func _handle_coin_collision(coin: Node2D) -> void:
 	print("Coin touched")

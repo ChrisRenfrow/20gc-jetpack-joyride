@@ -123,7 +123,7 @@ size = Vector2(32, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cfid5"]
 size = Vector2(32, 22)
 
-[node name="Minion" type="CharacterBody2D"]
+[node name="Minion" type="CharacterBody2D" groups=["minion"]]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_lqive")

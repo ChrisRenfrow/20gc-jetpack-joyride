@@ -5,6 +5,7 @@ enum SegmentType {
 	LASER,
 	MISSILE,
 	COIN,
+	NONE,
 }
 
 ## Weighted distribution of segments by type (excluding missiles)
@@ -48,14 +49,23 @@ var _weighted_segments: Dictionary:
 var _game_active := false:
 	get: return Globals.game_state == Globals.GameState.ACTIVE
 
+func reset() -> void:
+	[_active_segment, _queued_segment, _active_missile_segment, _queued_missile_segment].map(
+		func(segment):
+			if is_instance_valid(segment):
+				segment.queue_free())
+	_active_segment_type = SegmentType.NONE
+	_queued_segment_type = SegmentType.NONE
+
+func start() -> void:
+	_missile_timer_setup()
+	_queue_random_segment()
+
 func _ready() -> void:
 	for segment_type in _segments.keys():
 		var type_name = SegmentType.find_key(segment_type).to_lower() + "s"
 		_segments[segment_type] = _load_segments_from_path("res://assets/segments/" + type_name)
 		prints("Loaded", _segments[segment_type].size(), type_name, "segments")
-
-	_missile_timer_setup()
-	_queue_random_segment()
 
 func _process(_delta: float) -> void:
 	if _game_active:

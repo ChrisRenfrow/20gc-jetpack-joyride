@@ -47,7 +47,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iekkw"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q54l8"]
 size = Vector2(256, 20)
 
 [node name="Zapper" type="StaticBody2D" groups=["hazard"]]
@@ -77,4 +77,4 @@ frame_progress = 0.0744122
 
 [node name="BeamShape" type="CollisionShape2D" parent="."]
 position = Vector2(128, 0)
-shape = SubResource("RectangleShape2D_iekkw")
+shape = SubResource("RectangleShape2D_q54l8")
