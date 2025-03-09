@@ -1,0 +1,78 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgvil1cqqc1f2"]
+
+[ext_resource type="Script" path="res://assets/ui/game_over/game_over.gd" id="1_4xoha"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_4xoha")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GameOverText" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GameOver" type="Label" parent="CenterContainer/VBoxContainer/GameOverText"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Game over!"
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 48
+
+[node name="ScoreRow" type="CenterContainer" parent="CenterContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ScoreCol" type="VBoxContainer" parent="CenterContainer/VBoxContainer/MarginContainer/ScoreRow"]
+layout_mode = 2
+
+[node name="DistanceRow" type="HBoxContainer" parent="CenterContainer/VBoxContainer/MarginContainer/ScoreRow/ScoreCol"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="DistanceLabel" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/ScoreRow/ScoreCol/DistanceRow"]
+layout_mode = 2
+text = "Distance: "
+
+[node name="DistanceValue" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/ScoreRow/ScoreCol/DistanceRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "12345m"
+
+[node name="CoinsRow" type="HBoxContainer" parent="CenterContainer/VBoxContainer/MarginContainer/ScoreRow/ScoreCol"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="CoinsLabel" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/ScoreRow/ScoreCol/CoinsRow"]
+layout_mode = 2
+text = "Coins: "
+
+[node name="CoinsValue" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/ScoreRow/ScoreCol/CoinsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "123"
+
+[node name="NewGameButtonContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NewGameButton" type="Button" parent="CenterContainer/VBoxContainer/NewGameButtonContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 40)
+layout_mode = 2
+text = "Try again?"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/NewGameButtonContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
