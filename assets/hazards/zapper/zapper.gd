@@ -16,10 +16,10 @@ extends StaticBody2D
 		angle_degrees = rot
 		rotation_degrees = rot
 
-var scroll_speed := 0.0
+var scroll_speed: float:
+	get: return Globals.scroll_speed
 
 func _ready() -> void:
-	Globals.scroll_speed_changed.connect(_set_scroll_speed)
 	_setup()
 
 func _process(delta: float) -> void:
@@ -27,9 +27,6 @@ func _process(delta: float) -> void:
 	# Bounds checking
 	if $TrodeA.global_position.x <= -10 and $TrodeB.global_position.x <= -10:
 		queue_free()
-
-func _set_scroll_speed(new_speed: float) -> void:
-	scroll_speed = new_speed
 
 func _setup():
 	var new_shape: RectangleShape2D = $BeamShape.shape.duplicate()
