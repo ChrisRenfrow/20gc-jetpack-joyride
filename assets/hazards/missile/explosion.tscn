@@ -4,6 +4,70 @@
 [ext_resource type="Script" path="res://assets/hazards/missile/explosion.gd" id="1_wbqre"]
 [ext_resource type="Texture2D" uid="uid://by1s2jgi7viie" path="res://assets/hazards/missile/sprites/missile-sheet.png" id="2_4bu7u"]
 
+[sub_resource type="Curve" id="Curve_gqve2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mqm2i"]
+curve = SubResource("Curve_gqve2")
+
+[sub_resource type="Curve" id="Curve_6p2iy"]
+max_value = 2.0
+_data = [Vector2(0, 0), 0.0, 7.16492, 0, 0, Vector2(0.99005, 1.97529), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_lt04e"]
+curve = SubResource("Curve_6p2iy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jrqwa"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 1.07288e-05
+direction = Vector3(1, 1, 0)
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, -20, 0)
+radial_accel_min = -75.8
+radial_accel_max = 90.0
+scale_curve = SubResource("CurveTexture_lt04e")
+color = Color(0.34, 0.34, 0.34, 0.462745)
+alpha_curve = SubResource("CurveTexture_mqm2i")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5w3rb"]
+atlas = ExtResource("2_4bu7u")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="Gradient" id="Gradient_ufj7p"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.827167, 0.39, 0.360784)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qdj2p"]
+gradient = SubResource("Gradient_ufj7p")
+
+[sub_resource type="Curve" id="Curve_a16hb"]
+max_value = 2.0
+_data = [Vector2(0, 0.90019), 0.0, 3.59729, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2mx6q"]
+curve = SubResource("Curve_a16hb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ogdbw"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(1, 1, 0)
+spread = 180.0
+initial_velocity_min = 557.08
+initial_velocity_max = 557.08
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_2mx6q")
+color_ramp = SubResource("GradientTexture1D_qdj2p")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svago"]
+atlas = ExtResource("2_4bu7u")
+region = Rect2(64, 0, 32, 32)
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cqy4n"]
 particles_animation = true
 particles_anim_h_frames = 4
@@ -47,82 +111,18 @@ color_ramp = SubResource("GradientTexture1D_hm7hq")
 alpha_curve = SubResource("CurveTexture_oaray")
 anim_offset_max = 1.0
 
-[sub_resource type="Gradient" id="Gradient_ufj7p"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 0.827167, 0.39, 0.360784)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_qdj2p"]
-gradient = SubResource("Gradient_ufj7p")
-
-[sub_resource type="Curve" id="Curve_a16hb"]
-max_value = 2.0
-_data = [Vector2(0, 0.90019), 0.0, 3.59729, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_2mx6q"]
-curve = SubResource("Curve_a16hb")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ogdbw"]
-particle_flag_disable_z = true
-angle_min = -720.0
-angle_max = 720.0
-direction = Vector3(1, 1, 0)
-spread = 180.0
-initial_velocity_min = 557.08
-initial_velocity_max = 557.08
-gravity = Vector3(0, 0, 0)
-scale_curve = SubResource("CurveTexture_2mx6q")
-color_ramp = SubResource("GradientTexture1D_qdj2p")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_svago"]
-atlas = ExtResource("2_4bu7u")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="Curve" id="Curve_gqve2"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_mqm2i"]
-curve = SubResource("Curve_gqve2")
-
-[sub_resource type="Curve" id="Curve_6p2iy"]
-max_value = 2.0
-_data = [Vector2(0, 0), 0.0, 7.16492, 0, 0, Vector2(0.99005, 1.97529), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_lt04e"]
-curve = SubResource("Curve_6p2iy")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jrqwa"]
-particle_flag_disable_z = true
-angle_min = -720.0
-angle_max = 1.07288e-05
-direction = Vector3(1, 1, 0)
-spread = 180.0
-initial_velocity_min = 200.0
-initial_velocity_max = 200.0
-gravity = Vector3(0, -20, 0)
-radial_accel_min = -75.8
-radial_accel_max = 90.0
-scale_curve = SubResource("CurveTexture_lt04e")
-color = Color(0.34, 0.34, 0.34, 0.462745)
-alpha_curve = SubResource("CurveTexture_mqm2i")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5w3rb"]
-atlas = ExtResource("2_4bu7u")
-region = Rect2(64, 0, 32, 32)
-
 [node name="Explosion" type="Node2D"]
 script = ExtResource("1_wbqre")
 
-[node name="Shrapnel" type="GPUParticles2D" parent="."]
-material = SubResource("CanvasItemMaterial_cqy4n")
-position = Vector2(-8, 0)
+[node name="Smoke" type="GPUParticles2D" parent="."]
 emitting = false
-amount = 30
-process_material = SubResource("ParticleProcessMaterial_vrp6g")
-texture = ExtResource("1_jbvdm")
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_jrqwa")
+texture = SubResource("AtlasTexture_5w3rb")
+lifetime = 0.6
 one_shot = true
 explosiveness = 1.0
+randomness = 1.0
 
 [node name="Blast" type="GPUParticles2D" parent="."]
 position = Vector2(-8, 0)
@@ -135,12 +135,12 @@ one_shot = true
 explosiveness = 1.0
 randomness = 1.0
 
-[node name="Smoke" type="GPUParticles2D" parent="."]
+[node name="Shrapnel" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_cqy4n")
+position = Vector2(-8, 0)
 emitting = false
-amount = 20
-process_material = SubResource("ParticleProcessMaterial_jrqwa")
-texture = SubResource("AtlasTexture_5w3rb")
-lifetime = 0.6
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_vrp6g")
+texture = ExtResource("1_jbvdm")
 one_shot = true
 explosiveness = 1.0
-randomness = 1.0
