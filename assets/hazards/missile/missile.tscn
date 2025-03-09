@@ -119,6 +119,7 @@ z_index = 1
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_64slj")
+homing_speed = 600.0
 
 [node name="TrailParticles" type="GPUParticles2D" parent="."]
 position = Vector2(16, 0)
