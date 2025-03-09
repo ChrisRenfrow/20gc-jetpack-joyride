@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1yyralicdicp"]
+[gd_scene load_steps=8 format=3 uid="uid://c1yyralicdicp"]
 
 [ext_resource type="Script" path="res://assets/game/game.gd" id="1_htx0q"]
 [ext_resource type="PackedScene" uid="uid://dsd1ehisxgcag" path="res://assets/player/player.tscn" id="2_oqv7w"]
 [ext_resource type="PackedScene" uid="uid://dw3m0bwi70wnu" path="res://assets/systems/segment_manager/segment_manager.tscn" id="3_qs31t"]
 [ext_resource type="PackedScene" uid="uid://dmcxcv1lrfyyc" path="res://assets/stages/basic_stage.tscn" id="4_4wdhq"]
 [ext_resource type="PackedScene" uid="uid://coel0vsri1fcx" path="res://assets/systems/minion_manager/minion_manager.tscn" id="5_0x6jl"]
-[ext_resource type="PackedScene" uid="uid://dfhuyf8kc8pmc" path="res://assets/ui/hud.tscn" id="6_noswl"]
+[ext_resource type="PackedScene" uid="uid://dfhuyf8kc8pmc" path="res://assets/ui/hud/hud.tscn" id="6_noswl"]
+[ext_resource type="PackedScene" uid="uid://crfaflrk5qk8o" path="res://assets/ui/start/start.tscn" id="7_toalt"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -13,6 +14,7 @@ script = ExtResource("1_htx0q")
 
 [node name="Player" parent="." instance=ExtResource("2_oqv7w")]
 position = Vector2(128, 187)
+invincible = true
 
 [node name="BasicStage" parent="." instance=ExtResource("4_4wdhq")]
 
@@ -21,5 +23,9 @@ minion_y_position = 300.0
 
 [node name="SegmentManager" parent="." instance=ExtResource("3_qs31t")]
 
-[node name="Hud" parent="." instance=ExtResource("6_noswl")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("6_noswl")]
 offset_right = 640.0
+
+[node name="Start" parent="CanvasLayer" instance=ExtResource("7_toalt")]
