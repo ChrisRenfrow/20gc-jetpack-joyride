@@ -75,7 +75,6 @@ func _process(delta: float) -> void:
 
 func _change_state(new_state: LaserState) -> void:
 	_state = new_state
-	prints("Changing state:", LaserState.keys()[new_state])
 	match _state:
 		LaserState.CHARGING:
 			_play_diode_animation("charging")
