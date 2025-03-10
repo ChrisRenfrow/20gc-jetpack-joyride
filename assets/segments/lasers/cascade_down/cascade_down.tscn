@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ekdgn50psnal"]
 
 [ext_resource type="PackedScene" uid="uid://dlt41xtu7ue3w" path="res://assets/hazards/laser/laser.tscn" id="1_k007f"]
-[ext_resource type="Script" path="res://assets/segments/lasers/cascade_down/cascade_down.gd" id="1_s2o8p"]
+[ext_resource type="Script" uid="uid://cnp7qw2xhwpjy" path="res://assets/segments/lasers/cascade_down/cascade_down.gd" id="1_s2o8p"]
 
 [node name="CascadeDown" type="Node2D"]
 script = ExtResource("1_s2o8p")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://coel0vsri1fcx"]
 
-[ext_resource type="Script" path="res://assets/systems/minion_manager/minion_manager.gd" id="1_rnxl1"]
+[ext_resource type="Script" uid="uid://bpqm7y3gvwirv" path="res://assets/systems/minion_manager/minion_manager.gd" id="1_rnxl1"]
 
 [node name="MinionManager" type="Node2D"]
 y_sort_enabled = true

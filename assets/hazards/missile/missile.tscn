@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://dx11w820lxb32"]
 
-[ext_resource type="Script" path="res://assets/hazards/missile/missile.gd" id="1_64slj"]
+[ext_resource type="Script" uid="uid://d4nqs4wdson56" path="res://assets/hazards/missile/missile.gd" id="1_64slj"]
 [ext_resource type="Texture2D" uid="uid://by1s2jgi7viie" path="res://assets/hazards/missile/sprites/missile-sheet.png" id="1_rnhwk"]
 [ext_resource type="PackedScene" uid="uid://ppjeq8by8ijb" path="res://assets/hazards/missile/explosion.tscn" id="3_gu55p"]
 

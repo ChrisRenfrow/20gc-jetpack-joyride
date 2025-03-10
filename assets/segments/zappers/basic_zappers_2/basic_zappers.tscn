@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://beeppdj2v0y6d"]
 
-[ext_resource type="Script" path="res://assets/segments/zappers/basic_zappers_2/basic_zappers.gd" id="1_vwbn7"]
+[ext_resource type="Script" uid="uid://dk8hr6yjh2qgr" path="res://assets/segments/zappers/basic_zappers_2/basic_zappers.gd" id="1_vwbn7"]
 [ext_resource type="PackedScene" uid="uid://b5mri4bhjc6fp" path="res://assets/hazards/zapper/zapper.tscn" id="2_wjv6f"]
 
 [node name="BasicZappers" type="Node2D"]

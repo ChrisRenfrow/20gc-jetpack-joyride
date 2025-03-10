@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dfirtihtely2"]
 
-[ext_resource type="Script" path="res://assets/segments/coins/ramp/ramp.gd" id="1_73y1x"]
+[ext_resource type="Script" uid="uid://b3tm883uk7ch4" path="res://assets/segments/coins/ramp/ramp.gd" id="1_73y1x"]
 [ext_resource type="PackedScene" uid="uid://ihkq7if2tmkb" path="res://assets/coin/coin.tscn" id="1_aum28"]
 
 [node name="Ramp" type="Node2D"]

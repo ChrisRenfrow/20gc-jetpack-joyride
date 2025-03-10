@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bieq4b8puaovg"]
 
 [ext_resource type="PackedScene" uid="uid://dx11w820lxb32" path="res://assets/hazards/missile/missile.tscn" id="1_bl8nc"]
-[ext_resource type="Script" path="res://assets/segments/missiles/trio_normal/trio_normal.gd" id="1_hjtre"]
+[ext_resource type="Script" uid="uid://ceu1g8skt2mdh" path="res://assets/segments/missiles/trio_normal/trio_normal.gd" id="1_hjtre"]
 
 [node name="TrioNormal" type="Node2D"]
 script = ExtResource("1_hjtre")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b5trv6cybe1iw"]
 
-[ext_resource type="Script" path="res://assets/segments/missiles/trio_normal/trio_normal.gd" id="1_8shjm"]
+[ext_resource type="Script" uid="uid://ceu1g8skt2mdh" path="res://assets/segments/missiles/trio_normal/trio_normal.gd" id="1_8shjm"]
 [ext_resource type="PackedScene" uid="uid://dx11w820lxb32" path="res://assets/hazards/missile/missile.tscn" id="2_xq5ch"]
 
 [node name="TrioHoming" type="Node2D"]

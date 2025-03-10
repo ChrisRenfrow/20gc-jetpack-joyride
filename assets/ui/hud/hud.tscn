@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dfhuyf8kc8pmc"]
 
 [ext_resource type="Texture2D" uid="uid://ixkilj80pirx" path="res://assets/coin/coin-sprite.png" id="1_5xp1c"]
-[ext_resource type="Script" path="res://assets/ui/hud/hud.gd" id="1_lyl0g"]
+[ext_resource type="Script" uid="uid://dvsk2yg5yyns8" path="res://assets/ui/hud/hud.gd" id="1_lyl0g"]
 
 [node name="Hud" type="Control"]
 layout_mode = 3

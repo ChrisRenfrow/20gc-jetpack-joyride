@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://dlt41xtu7ue3w"]
 
-[ext_resource type="Script" path="res://assets/hazards/laser/laser.gd" id="1_bgb33"]
+[ext_resource type="Script" uid="uid://b5sm670ai3u0b" path="res://assets/hazards/laser/laser.gd" id="1_bgb33"]
 [ext_resource type="Texture2D" uid="uid://ccmra412tabw5" path="res://assets/hazards/laser/sprites/laser-sheet.png" id="1_mw51r"]
 [ext_resource type="Texture2D" uid="uid://coyaai1n6gvfa" path="res://assets/hazards/laser/sprites/beam-1.png" id="2_em25o"]
 [ext_resource type="Texture2D" uid="uid://st0nsim62xay" path="res://assets/hazards/laser/sprites/beam-2.png" id="3_eql3a"]

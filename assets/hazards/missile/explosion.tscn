@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://ppjeq8by8ijb"]
 
 [ext_resource type="Texture2D" uid="uid://biwvdvesknptg" path="res://assets/hazards/missile/sprites/missile-pieces-sheet.png" id="1_jbvdm"]
-[ext_resource type="Script" path="res://assets/hazards/missile/explosion.gd" id="1_wbqre"]
+[ext_resource type="Script" uid="uid://cqi2fc1lh8cci" path="res://assets/hazards/missile/explosion.gd" id="1_wbqre"]
 [ext_resource type="Texture2D" uid="uid://by1s2jgi7viie" path="res://assets/hazards/missile/sprites/missile-sheet.png" id="2_4bu7u"]
 
 [sub_resource type="Curve" id="Curve_gqve2"]
@@ -12,7 +12,7 @@ point_count = 2
 curve = SubResource("Curve_gqve2")
 
 [sub_resource type="Curve" id="Curve_6p2iy"]
-max_value = 2.0
+_limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 7.16492, 0, 0, Vector2(0.99005, 1.97529), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -45,7 +45,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 0.827167, 0.39, 0.360784)
 gradient = SubResource("Gradient_ufj7p")
 
 [sub_resource type="Curve" id="Curve_a16hb"]
-max_value = 2.0
+_limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0.90019), 0.0, 3.59729, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
 point_count = 2
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dmcxcv1lrfyyc"]
 
-[ext_resource type="Script" path="res://assets/stages/basic_stage.gd" id="1_20upy"]
+[ext_resource type="Script" uid="uid://clmd4qfrkeh37" path="res://assets/stages/basic_stage.gd" id="1_20upy"]
 [ext_resource type="Texture2D" uid="uid://dxkk8m0x41mga" path="res://assets/stages/basic-stage-sheet.png" id="1_thnxr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cha6s"]
