@@ -37,6 +37,8 @@ func _ready() -> void:
 	if facing == Vector2.RIGHT:
 		$MinionSprite.flip_h = true
 
+	$Sparks.stop()
+
 func _process(delta: float) -> void:
 	game_movement = Vector2(-game_speed, 0)
 
@@ -56,6 +58,7 @@ func _process(delta: float) -> void:
 			velocity = run_speed * facing
 		State.KO:
 			velocity = Vector2.ZERO
+			$Sparks.start()
 
 	velocity += game_movement
 	position += velocity * delta
