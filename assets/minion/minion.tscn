@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://t2yvvugyyfs7"]
+[gd_scene load_steps=29 format=3 uid="uid://t2yvvugyyfs7"]
 
 [ext_resource type="Texture2D" uid="uid://bjak72u6abv3r" path="res://assets/minion/minion-sheet.png" id="1_g2w02"]
 [ext_resource type="Script" uid="uid://ca6i0dtdqu3e1" path="res://assets/minion/minion.gd" id="1_lqive"]
@@ -7,6 +7,42 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ijs6"]
 atlas = ExtResource("1_g2w02")
 region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfnue"]
+atlas = ExtResource("1_g2w02")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scn22"]
+atlas = ExtResource("1_g2w02")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxqch"]
+atlas = ExtResource("1_g2w02")
+region = Rect2(448, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnomh"]
+atlas = ExtResource("1_g2w02")
+region = Rect2(480, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7sb54"]
+atlas = ExtResource("1_g2w02")
+region = Rect2(512, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysots"]
+atlas = ExtResource("1_g2w02")
+region = Rect2(544, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tthec"]
+atlas = ExtResource("1_g2w02")
+region = Rect2(576, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5m48v"]
+atlas = ExtResource("1_g2w02")
+region = Rect2(608, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvdev"]
+atlas = ExtResource("1_g2w02")
+region = Rect2(640, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qtw28"]
 atlas = ExtResource("1_g2w02")
@@ -61,10 +97,37 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4ijs6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfnue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scn22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxqch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnomh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7sb54")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysots")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tthec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5m48v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvdev")
 }],
 "loop": true,
 "name": &"ko",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -132,6 +195,7 @@ script = ExtResource("1_lqive")
 sprite_frames = SubResource("SpriteFrames_hdenv")
 animation = &"ko"
 autoplay = "rolling"
+frame_progress = 0.0634949
 
 [node name="MinionCollider" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)
@@ -149,5 +213,6 @@ debug_color = Color(1, 0.414869, 0.362523, 0.42)
 
 [node name="Sparks" parent="." instance=ExtResource("3_rfnue")]
 position = Vector2(-6, -3)
+sparking = false
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
