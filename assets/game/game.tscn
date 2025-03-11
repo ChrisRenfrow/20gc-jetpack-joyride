@@ -14,8 +14,7 @@ y_sort_enabled = true
 script = ExtResource("1_htx0q")
 
 [node name="Player" parent="." instance=ExtResource("2_oqv7w")]
-position = Vector2(128, 187)
-invincible = true
+position = Vector2(128, 300)
 
 [node name="BasicStage" parent="." instance=ExtResource("4_4wdhq")]
 
