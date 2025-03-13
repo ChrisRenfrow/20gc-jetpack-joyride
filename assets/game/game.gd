@@ -32,6 +32,7 @@ func _ready() -> void:
 
 	Globals.game_state_changed.connect(_game_state_changed)
 	player.player_state_change.connect(_on_player_state_change)
+	player.player_bounce.connect(_on_player_bounce)
 
 	_state = Globals.GameState.START
 
@@ -79,3 +80,6 @@ func _reset_game() -> void:
 
 func _on_speed_inc_timer_timeout() -> void:
 	_speed = minf(_speed + SPEED_INCREMENT, MAX_SPEED)
+
+func _on_player_bounce(_y_velocity: float) -> void:
+	Globals.scroll_speed *= 0.5

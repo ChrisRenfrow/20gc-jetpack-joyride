@@ -11,10 +11,7 @@ enum GameState {
 
 signal game_state_changed(new_state: GameState)
 
-var scroll_speed: float = 0:
-	set(value):
-		scroll_speed = value
-
+var scroll_speed: float = 0
 var distance: float = 0.0
 var coins: int = 0
 
@@ -26,6 +23,8 @@ var game_state: GameState = GameState.START:
 				scroll_speed = INITIAL_SPEED
 			GameState.START:
 				reset_game()
+			GameState.GAMEOVER:
+				scroll_speed = 0
 
 		game_state = state
 		game_state_changed.emit(state)
