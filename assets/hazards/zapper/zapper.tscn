@@ -47,21 +47,22 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2m5n"]
-size = Vector2(256, 20)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_37m2m"]
+height = 222.0
 
 [node name="Zapper" type="StaticBody2D" groups=["hazard"]]
 z_index = 1
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_p55rc")
+arc_length = 200.0
 
 [node name="Arc" type="Sprite2D" parent="."]
 texture_repeat = 2
-position = Vector2(128, 0)
+position = Vector2(100, 0)
 texture = SubResource("AnimatedTexture_afhsk")
 region_enabled = true
-region_rect = Rect2(0, 0, 256, 32)
+region_rect = Rect2(0, 0, 200, 32)
 
 [node name="TrodeA" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_u5ur4")
@@ -69,12 +70,13 @@ autoplay = "default"
 frame_progress = 0.86139
 
 [node name="TrodeB" type="AnimatedSprite2D" parent="."]
-position = Vector2(256, 0)
+position = Vector2(200, 0)
 rotation = 3.14159
 sprite_frames = SubResource("SpriteFrames_u5ur4")
 autoplay = "default"
 frame_progress = 0.0744122
 
 [node name="BeamShape" type="CollisionShape2D" parent="."]
-position = Vector2(128, 0)
-shape = SubResource("RectangleShape2D_h2m5n")
+position = Vector2(100, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_37m2m")
