@@ -195,7 +195,7 @@ script = ExtResource("1_lqive")
 sprite_frames = SubResource("SpriteFrames_hdenv")
 animation = &"ko"
 autoplay = "rolling"
-frame_progress = 0.0634949
+frame_progress = 0.50174
 
 [node name="MinionCollider" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)

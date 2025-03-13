@@ -16,7 +16,7 @@ region = Rect2(0, 0, 640, 360)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bg4m7"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0i1rv"]
-polygon = PackedVector2Array(-2, -20, 1283, -20, 1282, 15, -2, 18)
+polygon = PackedVector2Array(0, -40, 640, -40, 640, 40, 0, 40)
 
 [node name="BasicStage" type="Node2D"]
 script = ExtResource("1_20upy")
@@ -30,9 +30,9 @@ motion_mirroring = Vector2(640, 0)
 offset_right = 639.0
 offset_bottom = 361.0
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Backdrop" type="ParallaxLayer" parent="BG"]
-motion_scale = Vector2(0.8, 0.8)
 motion_mirroring = Vector2(640, 0)
 
 [node name="BackdropTexture" type="TextureRect" parent="BG/Backdrop"]
@@ -49,20 +49,20 @@ offset_bottom = 360.0
 texture = SubResource("AtlasTexture_26vk8")
 
 [node name="Ceiling" type="StaticBody2D" parent="."]
+position = Vector2(320, 30)
 collision_mask = 0
 
 [node name="CeilingBoundary" type="CollisionShape2D" parent="Ceiling"]
-position = Vector2(320, 31)
 rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_tb8pi")
 
 [node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(320, 325)
 collision_mask = 0
 
 [node name="FloorBoundary" type="CollisionShape2D" parent="Floor"]
-position = Vector2(320, 327)
 shape = SubResource("WorldBoundaryShape2D_bg4m7")
 
 [node name="ParticleOccluder" type="LightOccluder2D" parent="."]
-position = Vector2(-1, 347)
+position = Vector2(0, 365)
 occluder = SubResource("OccluderPolygon2D_0i1rv")

@@ -26,7 +26,7 @@ alpha_curve = SubResource("CurveTexture_hsem7")
 [node name="SparkBurstParticles" type="GPUParticles2D"]
 emitting = false
 amount = 10
-amount_ratio = 0.409614
+amount_ratio = 0.387626
 lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
