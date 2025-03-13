@@ -69,12 +69,13 @@ func _on_player_state_change(new_state: Player.PlayerState) -> void:
 func _start_game() -> void:
 	segment_manager.start()
 	minion_manager.start()
+	player.start()
 
 func _reset_game() -> void:
-	player.reset()
-	segment_manager.reset()
 	stage.reset()
+	segment_manager.reset()
 	minion_manager.reset()
+	player.reset()
 
 func _on_speed_inc_timer_timeout() -> void:
 	_speed = minf(_speed + SPEED_INCREMENT, MAX_SPEED)

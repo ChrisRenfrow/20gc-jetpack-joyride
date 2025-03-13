@@ -14,6 +14,9 @@ enum PlayerState {
 
 signal player_state_change(new_state: PlayerState)
 
+@export_group("Positioning")
+@export var home_position: Marker2D
+
 @export_group("Movement")
 @export var player_gravity: float = 500.0
 @export var jetpack_thrust: float = 600.0
@@ -28,7 +31,7 @@ signal player_state_change(new_state: PlayerState)
 @onready var exhaust_particles: GPUParticles2D = $JetpackSprite/ExhaustParticles
 @onready var casing_particles: GPUParticles2D = $JetpackSprite/CasingParticles
 
-var _state := PlayerState.ACTIVE:
+var _state := PlayerState.INTRO:
 	set(new_state):
 		player_state_change.emit(new_state)
 		_state = new_state
@@ -36,11 +39,16 @@ var _state := PlayerState.ACTIVE:
 var _bounce_count: int = 0
 
 func reset() -> void:
+	_state = PlayerState.INTRO
+
+func start() -> void:
 	_state = PlayerState.ACTIVE
 
 func _ready() -> void:
 	hitbox.position = Vector2.ZERO
 	velocity = Vector2.ZERO
+	if home_position != null:
+		global_position = home_position.global_position
 
 func _physics_process(delta: float) -> void:
 	match _state:
@@ -93,15 +101,14 @@ func _on_hitzone_body_entered(body: Node2D) -> void:
 		_handle_coin_collision(body)
 
 func _handle_hazard_collision(hazard: Node2D) -> void:
-	print("Hit hazard, game-over.")
 	# Missile case
 	if hazard.has_method("explode"):
 		hazard.explode()
 	if not invincible:
+		print("Player hit hazard: ", hazard.name, "\nGAME OVER")
 		_state = PlayerState.HIT
 
 func _handle_coin_collision(coin: Node2D) -> void:
-	print("Coin touched")
 	coin.queue_free()
 	Globals.coins += 1
 

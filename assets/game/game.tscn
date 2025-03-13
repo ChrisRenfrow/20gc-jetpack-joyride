@@ -13,8 +13,12 @@
 y_sort_enabled = true
 script = ExtResource("1_htx0q")
 
-[node name="Player" parent="." instance=ExtResource("2_oqv7w")]
-position = Vector2(128, 300)
+[node name="Player" parent="." node_paths=PackedStringArray("home_position") instance=ExtResource("2_oqv7w")]
+position = Vector2(104, 208)
+home_position = NodePath("../PlayerHomePos")
+
+[node name="PlayerHomePos" type="Marker2D" parent="."]
+position = Vector2(128, 304)
 
 [node name="BasicStage" parent="." instance=ExtResource("4_4wdhq")]
 
