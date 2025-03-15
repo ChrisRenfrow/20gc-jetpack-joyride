@@ -6,8 +6,7 @@ extends StaticBody2D
 @export var arc_length: float = 500:
 	set(len):
 		arc_length = len
-		# We only want to run setup when updating arc_length in the editor because we already know everything is ready
-		if Engine.is_editor_hint():
+		if is_node_ready():
 			_setup()
 
 ## The beam's angle of rotation in degrees, updates in the editor
