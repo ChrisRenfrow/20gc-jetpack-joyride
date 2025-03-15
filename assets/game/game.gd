@@ -1,9 +1,9 @@
 class_name Game
 extends Node2D
 
-const MAX_SPEED: float = 500
-const SPEED_INCREMENT: float = 5
-const SPEED_INCREMENT_RATE: float = 5
+const MAX_SPEED: float = 1000
+const SPEED_INCREMENT: float = 50
+const SPEED_INCREMENT_RATE: float = 2
 
 @onready var stage: Node2D = $BasicStage
 @onready var player: Player = $Player
@@ -82,4 +82,4 @@ func _on_speed_inc_timer_timeout() -> void:
 	_speed = minf(_speed + SPEED_INCREMENT, MAX_SPEED)
 
 func _on_player_bounce(_y_velocity: float) -> void:
-	Globals.scroll_speed *= 0.5
+	_speed *= 0.5
