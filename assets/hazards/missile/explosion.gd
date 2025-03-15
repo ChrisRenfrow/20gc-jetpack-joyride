@@ -17,5 +17,6 @@ func _explode() -> void:
 	blast.emitting = true
 	shrapnel.emitting = true
 	smoke.emitting = true
+	_queue_explode = false
 	await get_tree().create_timer(2).timeout
 	queue_free()
