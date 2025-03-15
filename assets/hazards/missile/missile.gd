@@ -84,6 +84,7 @@ func _process(_delta: float) -> void:
 func _init_missile() -> void:
 	_screen_size = get_viewport_rect().size
 	_player = get_tree().get_first_node_in_group("player")
+	$MissileShape.disabled = true
 	global_position.x = _screen_size.x + 50
 	alert_sprite.global_position.x = _screen_size.x - 40
 	alert_sprite.hide()
@@ -129,6 +130,7 @@ func _on_alert_duration_timeout() -> void:
 	_state = MissileState.ACTIVE
 	alert_sprite.hide()
 	trail_particles.emitting = true
+	$MissileShape.disabled = false
 
 func _on_trail_particles_finished() -> void:
 	print("Particles finished, freeing")
