@@ -1,5 +1,4 @@
-class_name Missile
-extends StaticBody2D
+class_name Missile extends Hazard
 
 enum MissileState {
     DELAY,
@@ -53,6 +52,9 @@ func explode() -> void:
 	explosion.explode()
 	await get_tree().create_timer(2).timeout
 	queue_free()
+
+func _init(t=HazardType.MISSILE) -> void:
+	super(t)
 
 func _ready() -> void:
 	_init_missile()

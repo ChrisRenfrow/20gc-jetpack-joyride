@@ -1,5 +1,4 @@
-class_name Laser
-extends StaticBody2D
+class_name Laser extends Hazard
 
 enum LaserState {
 	DELAY_ENTER,
@@ -46,6 +45,9 @@ var _charge_delay_timer := Timer.new()
 @onready var _beam: Node2D = $Beam
 @onready var _beam_sprite: Sprite2D = $Beam/BeamSprite
 @onready var _beam_charging_sprite: Sprite2D = $Beam/BeamChargingSprite
+
+func _init(t=HazardType.LASER) -> void:
+	super(t)
 
 func _ready() -> void:
 	_screen_size = get_viewport_rect().size

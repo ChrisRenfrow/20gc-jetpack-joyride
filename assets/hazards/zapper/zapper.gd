@@ -1,6 +1,5 @@
 @tool
-class_name Zapper
-extends StaticBody2D
+class_name Zapper extends Hazard
 
 ## The length of the zapper, updates in editor
 @export var arc_length: float = 500:
@@ -23,6 +22,9 @@ var scroll_speed: float:
 @onready var trode_b: AnimatedSprite2D = $TrodeB
 @onready var arc: Sprite2D = $Arc
 @onready var beam_shape: CollisionShape2D = $BeamShape
+
+func _init(t=HazardType.ZAPPER) -> void:
+	super(t)
 
 func _ready() -> void:
 	_setup()
