@@ -118,10 +118,12 @@ func _handle_coin_collision(coin: Node2D) -> void:
 	Globals.coins += 1
 
 func _activate_jetpack() -> void:
+	Globals.jetpack_firing = true
 	jetpack_sprite.play("firing")
 	_set_particles_emission(true)
 
 func _deactivate_jetpack() -> void:
+	Globals.jetpack_firing = false
 	jetpack_sprite.play("idle")
 	_set_particles_emission(false)
 

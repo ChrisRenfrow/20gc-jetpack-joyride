@@ -14,6 +14,8 @@ signal game_state_changed(new_state: GameState)
 var scroll_speed: float = 0
 var distance: float = 0.0
 var coins: int = 0
+## Set by Player when firing jetpack
+var jetpack_firing := false
 
 var game_state: GameState = GameState.START:
 	set(state):

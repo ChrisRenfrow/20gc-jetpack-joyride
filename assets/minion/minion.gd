@@ -23,6 +23,8 @@ var player: CharacterBody2D
 var state: State = State.OK
 var game_movement: Vector2
 
+@onready var _explosion_scene: PackedScene = load("res://assets/hazards/missile/explosion.tscn")
+
 var shocked_duration: float = 0.5
 var shocked_timer: Timer = Timer.new()
 
@@ -44,7 +46,7 @@ func _process(delta: float) -> void:
 
 	match state:
 		State.OK:
-			if Input.is_action_pressed("jump") \
+			if Globals.jetpack_firing \
 					and is_facing_player() \
 					and is_in_range():
 				$MinionSprite.play("shock")
@@ -83,3 +85,6 @@ func is_in_range() -> bool:
 func _on_hitbox_body_entered(_body: Node2D) -> void:
 	$MinionSprite.play("ko")
 	state = State.KO
+	var explosion = _explosion_scene.instantiate()
+	explosion.call("explode")
+	add_child(explosion)
