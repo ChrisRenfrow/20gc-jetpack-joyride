@@ -1,24 +1,50 @@
-[gd_scene load_steps=2 format=3 uid="uid://crfaflrk5qk8o"]
+[gd_scene load_steps=3 format=3 uid="uid://crfaflrk5qk8o"]
 
 [ext_resource type="Script" uid="uid://ds0osvreupr1q" path="res://assets/ui/start/start.gd" id="1_ws30q"]
+[ext_resource type="FontFile" uid="uid://c1vdbie8shk5u" path="res://assets/fonts/Hardpixel.OTF" id="2_syc7r"]
 
 [node name="Start" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_ws30q")
-
-[node name="ButtonContainer" type="CenterContainer" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ws30q")
 
-[node name="StartButton" type="Button" parent="ButtonContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 40)
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -241.5
+offset_top = -61.0
+offset_right = 241.5
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_syc7r")
+theme_override_font_sizes/font_size = 48
+text = "My Jetpack Joyride"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="ButtonContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="VBoxContainer/MarginContainer/ButtonContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_syc7r")
+theme_override_font_sizes/font_size = 32
 text = "Start"
 
-[connection signal="pressed" from="ButtonContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/ButtonContainer/StartButton" to="." method="_on_start_button_pressed"]

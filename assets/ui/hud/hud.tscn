@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfhuyf8kc8pmc"]
+[gd_scene load_steps=4 format=3 uid="uid://dfhuyf8kc8pmc"]
 
 [ext_resource type="Texture2D" uid="uid://ixkilj80pirx" path="res://assets/coin/coin-sprite.png" id="1_5xp1c"]
 [ext_resource type="Script" uid="uid://dvsk2yg5yyns8" path="res://assets/ui/hud/hud.gd" id="1_lyl0g"]
+[ext_resource type="FontFile" uid="uid://c1vdbie8shk5u" path="res://assets/fonts/Hardpixel.OTF" id="2_qyy74"]
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -27,6 +28,8 @@ layout_mode = 2
 [node name="DistanceLabel" type="Label" parent="MarginContainer/TopBar/DistanceContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qyy74")
+theme_override_font_sizes/font_size = 24
 text = "100000m"
 vertical_alignment = 1
 
@@ -45,4 +48,6 @@ stretch_mode = 5
 [node name="CoinsLabel" type="Label" parent="MarginContainer/TopBar/CoinsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "¢ 1234"
+theme_override_fonts/font = ExtResource("2_qyy74")
+theme_override_font_sizes/font_size = 24
+text = "1234"
