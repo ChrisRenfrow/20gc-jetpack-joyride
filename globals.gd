@@ -67,7 +67,7 @@ func get_gameover_reason_message() -> String:
 		"zapper" = [
 			"A real fan of electro-therapy.",
 			"Shocking!",
-			"Maybe lightning does strike twice?",
+			"Maybe lightning does strike the same place twice?",
 		],
 	}
 	var generic_messages = [
