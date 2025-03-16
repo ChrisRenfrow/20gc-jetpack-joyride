@@ -33,6 +33,7 @@ color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Backdrop" type="ParallaxLayer" parent="BG"]
+motion_scale = Vector2(0.6, 0.6)
 motion_mirroring = Vector2(640, 0)
 
 [node name="BackdropTexture" type="TextureRect" parent="BG/Backdrop"]
