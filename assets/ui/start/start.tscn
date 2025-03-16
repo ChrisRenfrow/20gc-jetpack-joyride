@@ -36,15 +36,10 @@ text = "My Jetpack Joyride"
 layout_mode = 2
 theme_override_constants/margin_top = 20
 
-[node name="ButtonContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="StartButton" type="Button" parent="VBoxContainer/MarginContainer/ButtonContainer"]
+[node name="StartPrompt" type="Label" parent="VBoxContainer/MarginContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 60)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_syc7r")
-theme_override_font_sizes/font_size = 32
-text = "Start"
-
-[connection signal="pressed" from="VBoxContainer/MarginContainer/ButtonContainer/StartButton" to="." method="_on_start_button_pressed"]
+text = "Tap, click, or press space to begin!"
+horizontal_alignment = 1
