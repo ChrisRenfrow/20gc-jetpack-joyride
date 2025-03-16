@@ -33,6 +33,7 @@ signal player_bounce(y_velocity: float)
 @export var invincible: bool = false
 
 @onready var hitbox: Area2D = $Hitbox
+@onready var player_sprite: AnimatedSprite2D = $PlayerSprite
 @onready var jetpack_sprite: AnimatedSprite2D = $JetpackSprite
 @onready var bullet_particles: GPUParticles2D = $JetpackSprite/BulletParticles
 @onready var exhaust_particles: GPUParticles2D = $JetpackSprite/ExhaustParticles
@@ -90,6 +91,12 @@ func _handle_animation() -> void:
 		_activate_jetpack()
 	else:
 		_deactivate_jetpack()
+
+	match _state:
+		PlayerState.KO, PlayerState.HIT, PlayerState.INTRO:
+			player_sprite.stop()
+		PlayerState.ACTIVE:
+			player_sprite.play("run")
 
 func _on_hitzone_body_entered(body: Node2D) -> void:
 	if _state != PlayerState.ACTIVE:
