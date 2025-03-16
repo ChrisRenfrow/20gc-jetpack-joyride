@@ -107,7 +107,7 @@ func _on_hitzone_body_entered(body: Node2D) -> void:
 	elif body.is_in_group("coin"):
 		_handle_coin_collision(body)
 
-func _handle_hazard_collision(hazard: Node2D) -> void:
+func _handle_hazard_collision(hazard: Hazard) -> void:
 	# Missile case
 	if hazard.has_method("explode"):
 		hazard.explode()
@@ -118,6 +118,7 @@ func _handle_hazard_collision(hazard: Node2D) -> void:
 		velocity.y *= -1
 	if not invincible:
 		print("Player hit hazard: ", hazard.name)
+		Globals.gameover_hazard_name = hazard.get_hazard_type()
 		_state = PlayerState.HIT
 
 func _handle_coin_collision(coin: Node2D) -> void:
