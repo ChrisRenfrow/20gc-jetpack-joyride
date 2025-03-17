@@ -86,5 +86,6 @@ func _on_hitbox_body_entered(_body: Node2D) -> void:
 	$MinionSprite.play("ko")
 	state = State.KO
 	var explosion = _explosion_scene.instantiate()
+	explosion.set("scale", Vector2(0.4,0.4))
 	explosion.call("explode")
 	add_child(explosion)
