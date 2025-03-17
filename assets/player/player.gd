@@ -33,6 +33,7 @@ signal player_bounce(y_velocity: float)
 @export var invincible: bool = false
 
 @onready var hitbox: Area2D = $Hitbox
+@onready var hit_particle: GPUParticles2D = $ImpactParticle
 @onready var player_sprite: AnimatedSprite2D = $PlayerSprite
 @onready var jetpack_sprite: AnimatedSprite2D = $JetpackSprite
 @onready var bullet_particles: GPUParticles2D = $JetpackSprite/BulletParticles
@@ -93,7 +94,7 @@ func _handle_animation() -> void:
 		_deactivate_jetpack()
 
 	match _state:
-		PlayerState.KO, PlayerState.HIT, PlayerState.INTRO:
+		PlayerState.KO, PlayerState.INTRO:
 			player_sprite.stop()
 		PlayerState.ACTIVE:
 			player_sprite.play("run")
@@ -120,6 +121,21 @@ func _handle_hazard_collision(hazard: Hazard) -> void:
 		print("Player hit hazard: ", hazard.name)
 		Globals.gameover_hazard_name = hazard.get_hazard_type()
 		_state = PlayerState.HIT
+		_hit_animation()
+
+func _hit_animation():
+	# _set_player_particle_speed_scale(0.0)
+	get_tree().paused = true
+	hit_particle.emitting = true
+	player_sprite.play("hit")
+	await get_tree().create_timer(0.5).timeout
+	get_tree().paused = false
+	# _set_player_particle_speed_scale(1.0)
+	player_sprite.play("fly")
+	player_sprite.stop()
+
+# func _set_player_particle_speed_scale(s_scale: float):
+#	[bullet_particles, exhaust_particles, casing_particles].map(func(p): p.speed_scale = s_scale)
 
 func _handle_coin_collision(coin: Node2D) -> void:
 	coin.queue_free()

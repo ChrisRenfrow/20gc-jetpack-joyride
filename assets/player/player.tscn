@@ -1,12 +1,39 @@
-[gd_scene load_steps=31 format=3 uid="uid://dsd1ehisxgcag"]
+[gd_scene load_steps=38 format=3 uid="uid://dsd1ehisxgcag"]
 
 [ext_resource type="Script" uid="uid://bqtvm1wrktkv5" path="res://assets/player/player.gd" id="1_2m8u1"]
+[ext_resource type="Texture2D" uid="uid://cjbfkwjukuei3" path="res://assets/player/impact.png" id="2_ouxva"]
 [ext_resource type="Texture2D" uid="uid://b5k38numhe6ib" path="res://assets/player/player-sheet.png" id="2_qr3i2"]
 [ext_resource type="Texture2D" uid="uid://c64y3unj1mocn" path="res://assets/player/jetpack-sheet.png" id="3_ab6ya"]
+
+[sub_resource type="Curve" id="Curve_ouxva"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.02776, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_d5dr7"]
+curve = SubResource("Curve_ouxva")
+
+[sub_resource type="Curve" id="Curve_d5dr7"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 0.00997019), 0.0, 17.144, 0, 0, Vector2(1, 5), 0.330851, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_toylo"]
+curve = SubResource("Curve_d5dr7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tb4ck"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_toylo")
+color = Color(1, 1, 1, 0.498039)
+alpha_curve = SubResource("CurveTexture_d5dr7")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v2miy"]
 atlas = ExtResource("2_qr3i2")
 region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hai6l"]
+atlas = ExtResource("2_qr3i2")
+region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ouxva"]
 atlas = ExtResource("2_qr3i2")
@@ -52,6 +79,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hai6l")
+}],
+"loop": true,
+"name": &"hit",
 "speed": 5.0
 }, {
 "frames": [{
@@ -170,7 +205,6 @@ gradient = SubResource("Gradient_pmgsf")
 particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 1.0
-inherit_velocity_ratio = 1.0
 direction = Vector3(-1, 1, 0)
 initial_velocity_min = 40.0
 initial_velocity_max = 90.0
@@ -210,12 +244,22 @@ radius = 12.0416
 collision_layer = 2
 script = ExtResource("1_2m8u1")
 
+[node name="ImpactParticle" type="GPUParticles2D" parent="."]
+process_mode = 3
+emitting = false
+amount = 1
+texture = ExtResource("2_ouxva")
+lifetime = 0.2
+one_shot = true
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_tb4ck")
+metadata/_edit_lock_ = true
+
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_sjh7q")
-animation = &"run"
+animation = &"hit"
 autoplay = "run"
-frame = 4
-frame_progress = 0.364099
 
 [node name="JetpackSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xlq55")
@@ -239,7 +283,6 @@ position = Vector2(-9, 13)
 emitting = false
 amount = 30
 texture = SubResource("AtlasTexture_84ysy")
-fixed_fps = 10
 process_material = SubResource("ParticleProcessMaterial_kkhb7")
 
 [node name="CasingParticles" type="GPUParticles2D" parent="JetpackSprite"]
