@@ -2,8 +2,8 @@ class_name Game
 extends Node2D
 
 const MAX_SPEED: float = 1000
-const SPEED_INCREMENT: float = 50
-const SPEED_INCREMENT_RATE: float = 2
+const SPEED_INCREMENT: float = 5
+const SPEED_INCREMENT_RATE: float = 7
 
 @onready var stage: Node2D = $BasicStage
 @onready var player: Player = $Player
@@ -28,6 +28,7 @@ var _speed: float = 0.0:
 func _ready() -> void:
 	_speed_inc_timer.wait_time = SPEED_INCREMENT_RATE
 	_speed_inc_timer.timeout.connect(_on_speed_inc_timer_timeout)
+	_speed_inc_timer.autostart = true
 	add_child(_speed_inc_timer)
 
 	Globals.game_state_changed.connect(_game_state_changed)
@@ -79,6 +80,7 @@ func _reset_game() -> void:
 	player.reset()
 
 func _on_speed_inc_timer_timeout() -> void:
+	print("Speed incrementing: ", _speed, " -> ", minf(_speed + SPEED_INCREMENT, MAX_SPEED))
 	_speed = minf(_speed + SPEED_INCREMENT, MAX_SPEED)
 
 func _on_player_bounce(_y_velocity: float) -> void:

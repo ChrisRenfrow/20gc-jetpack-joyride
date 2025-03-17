@@ -19,6 +19,10 @@ enum SegmentType {
 @export var missile_min_cooldown := 6.0;
 ## The maximum number of seconds to wait to queue a missile segment
 @export var missile_max_cooldown := 48.0;
+## The number of seconds to reduce the max missile cooldown per game speed increase
+@export var missile_cooldown_dec_on_speed_inc := 1.0
+
+var _original_missile_max_cooldown: float
 
 var scroll_speed: float:
 	get: return Globals.scroll_speed
@@ -56,12 +60,16 @@ func reset() -> void:
 				segment.queue_free())
 	_active_segment_type = SegmentType.NONE
 	_queued_segment_type = SegmentType.NONE
+	missile_max_cooldown = _original_missile_max_cooldown
 
 func start() -> void:
 	_missile_timer_setup()
 	_queue_random_segment()
 
 func _ready() -> void:
+	_original_missile_max_cooldown = missile_max_cooldown
+	Globals.game_speed_changed.connect(_on_game_speed_change)
+
 	for segment_type in _segments.keys():
 		var type_name = SegmentType.find_key(segment_type).to_lower() + "s"
 		_segments[segment_type] = _load_segments_from_path("res://assets/segments/" + type_name)
@@ -71,6 +79,11 @@ func _process(_delta: float) -> void:
 	if _game_active:
 		_try_spawn_queued_segment()
 		_try_spawn_queued_missile_segment()
+
+func _on_game_speed_change(_speed: float) -> void:
+	if _game_active:
+		missile_max_cooldown = maxf(missile_min_cooldown, missile_max_cooldown - missile_cooldown_dec_on_speed_inc)
+		print("Missile max cooldown reduced: ", missile_max_cooldown)
 
 func _queue_random_segment() -> void:
 	print("Queuing random segment:")

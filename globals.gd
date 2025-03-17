@@ -1,6 +1,6 @@
 extends Node
 
-const INITIAL_SPEED: float = 150
+const INITIAL_SPEED: float = 200
 
 enum HazardType {
 	LASER,
@@ -17,8 +17,12 @@ enum GameState {
 }
 
 signal game_state_changed(new_state: GameState)
+signal game_speed_changed(new_speed: float)
 
-var scroll_speed: float = 0
+var scroll_speed: float = 0:
+	set(speed):
+		game_speed_changed.emit(speed)
+		scroll_speed = speed
 var distance: float = 0.0
 var coins: int = 0
 ## Set by Player when firing jetpack
@@ -30,10 +34,10 @@ var game_state: GameState = GameState.START:
 	set(state):
 		print("Global game state change: ", GameState.find_key(state))
 		match state:
-			GameState.ACTIVE:
-				scroll_speed = INITIAL_SPEED
 			GameState.START:
 				reset_game()
+			GameState.ACTIVE:
+				scroll_speed = INITIAL_SPEED
 			GameState.GAMEOVER:
 				scroll_speed = 0
 
