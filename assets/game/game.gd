@@ -28,7 +28,6 @@ var _speed: float = 0.0:
 func _ready() -> void:
 	_speed_inc_timer.wait_time = SPEED_INCREMENT_RATE
 	_speed_inc_timer.timeout.connect(_on_speed_inc_timer_timeout)
-	_speed_inc_timer.autostart = true
 	add_child(_speed_inc_timer)
 
 	Globals.game_state_changed.connect(_game_state_changed)
@@ -71,6 +70,7 @@ func _on_player_state_change(new_state: Player.PlayerState) -> void:
 func _start_game() -> void:
 	segment_manager.start()
 	minion_manager.start()
+	_speed_inc_timer.start()
 	player.start()
 
 func _reset_game() -> void:
