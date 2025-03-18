@@ -139,29 +139,25 @@ func _spawn_queued_missile_segment() -> void:
 
 func _load_segments_from_path(path: String) -> Array[PackedScene]:
 	var segments: Array[PackedScene] = []
-	var dir = DirAccess.open(path)
-	if not dir:
-		push_error("Failed to open directory: " + path)
+	var directory_files = ResourceLoader.list_directory(path)
+	if not directory_files or directory_files.size() == 0:
+		push_error("No files at: " + path)
 		return segments
+	var directory_listing = DirAccess.get_directories_at(path)
 
-	dir.list_dir_begin()
-	var file_name = dir.get_next()
-
-	while file_name != "":
-		if dir.current_is_dir() and not file_name.begins_with("."):
-			segments.append_array(_load_segments_from_path(path + "/" + file_name))
-		elif file_name.ends_with(".tscn"):
-			var full_path = path + "/" + file_name
-			var scene = load(full_path) as PackedScene
+	for file in directory_files:
+		if file.ends_with(".tscn"):
+			var full_path = path + "/" + file
+			var scene = ResourceLoader.load(full_path, "PackedScene")
 			if not scene:
 				push_error("Failed to load scene: " + full_path)
 			elif not scene.instantiate() is BaseSegment:
 				push_error("Scene is not a BaseSegment: " + full_path)
 			else:
 				segments.append(scene)
-		file_name = dir.get_next()
 
-	dir.list_dir_end()
+	for dir in directory_listing:
+		segments.append_array(_load_segments_from_path(path + "/" + dir))
 
 	if segments.size() == 0:
 		prints("No segments found under", path)
